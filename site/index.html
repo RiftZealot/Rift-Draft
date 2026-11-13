@@ -1,0 +1,1071 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Rift Draft v14 — Stable Five-Role Workspace</title><style>
+:root{--bg:#090e19;--panel:#111b2b;--panel2:#172337;--line:#28354a;--text:#eaf2fb;--muted:#93a4ba;--gold:#e4be78;--cyan:#6dd4d0;--red:#e79092;--green:#92dfb7}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 75% -10%,#193044 0,transparent 42%),var(--bg);color:var(--text);font:14px/1.5 Inter,system-ui,Segoe UI,sans-serif}button,input,select{font:inherit}button{cursor:pointer}header{border-bottom:1px solid var(--line);padding:23px max(26px,calc((100vw - 1220px)/2));display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}h1{font-family:Georgia,serif;letter-spacing:.025em;margin:0;font-size:30px;color:#f2e1b3}header p{margin:2px 0;color:var(--muted)}main{max-width:1220px;margin:auto;padding:26px 20px 70px}.status{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:7px 12px;color:var(--muted)}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--gold);margin-right:7px}.status.good .dot{background:var(--green)}.status.bad .dot{background:var(--red)}.layout{display:grid;grid-template-columns:340px minmax(0,1fr);gap:18px}.panel{border:1px solid var(--line);border-radius:15px;background:linear-gradient(145deg,#142034,#0e1727);padding:19px;margin-bottom:18px;box-shadow:0 14px 30px #0002}h2{font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:#e6eefb;margin:0 0 15px}h3{font-size:14px;margin:0 0 8px}label{color:var(--muted);display:block;font-size:12px;font-weight:700;margin-bottom:6px;letter-spacing:.025em}.tabs{display:flex;gap:8px;margin-bottom:16px}.tab{flex:1;padding:11px;border:1px solid var(--line);background:var(--panel2);border-radius:8px;color:var(--muted);font-weight:750}.tab.active{border-color:var(--gold);background:#4e3d2940;color:#f2d29c}.field{margin-bottom:14px}.field select,.field input{width:100%;background:#0a1220;color:var(--text);border:1px solid #37445c;border-radius:9px;padding:10px;outline:none}.role-row{display:grid;grid-template-columns:85px 1fr;gap:9px;align-items:center;margin:9px 0}.role-row label{margin:0}.role-row select{width:100%;background:#0a1220;border:1px solid #37445c;color:var(--text);border-radius:8px;padding:9px}.role-row.primary select{border-color:var(--gold)}.help{font-size:12px;color:var(--muted);line-height:1.5}.divider{height:1px;background:var(--line);margin:18px 0}.smallbtn{border:1px solid #42546b;border-radius:8px;background:transparent;color:var(--text);padding:8px 11px}.smallbtn:hover{border-color:var(--gold)}.controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.controls label{margin:0}.chip{padding:5px 8px;color:var(--muted);border:1px solid var(--line);border-radius:7px;font-size:11px}.poolitem{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:9px;padding:8px;margin:7px 0;background:#0e1725}.poolitem img,.rankicon{width:39px;height:39px;border-radius:7px;object-fit:cover;background:#314258}.poolname{flex:1;font-weight:700}.poolitem select{border:1px solid var(--line);background:#0b1422;color:var(--text);padding:5px;border-radius:6px;font-size:12px}.checkline{display:flex;align-items:center;gap:7px;color:var(--text);font-size:12px}.checkline input{accent-color:var(--gold)}.banner{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}.banner h2{margin:0}.meta{font-size:12px;color:var(--muted)}.best{border:1px solid #836c41;background:linear-gradient(120deg,#3b3124aa,#1a2631);border-radius:14px;padding:20px;display:flex;align-items:center;gap:18px;margin-bottom:15px}.best img{width:76px;height:76px;border-radius:12px;border:2px solid #b89660}.best strong{font:28px Georgia,serif;color:#f6d9a3}.best .why{color:#cdd7e5;font-size:13px;margin-top:5px}.rank{display:grid;grid-template-columns:35px 42px minmax(110px,1fr) 90px 92px;gap:10px;align-items:center;border-top:1px solid var(--line);padding:13px 3px}.num{font-size:17px;font-weight:800;color:var(--muted);text-align:center}.rankname{font-size:16px;font-weight:700}.choose-guide{padding:0;border:0;background:none;color:var(--text);text-align:left}.choose-guide:hover{color:var(--gold);text-decoration:underline}.sub{font-size:11px;color:var(--muted)}.score{font-size:22px;font-weight:750;color:var(--gold);text-align:right;font-variant-numeric:tabular-nums}.risk{text-align:right;font-variant-numeric:tabular-nums}.positive{color:var(--green)}.negative{color:var(--red)}.neutral{color:var(--muted)}.bar{height:5px;background:#263449;border-radius:8px;overflow:hidden;margin-top:6px}.bar>div{background:linear-gradient(90deg,#866c43,#efcf85);height:100%;border-radius:8px}.details{margin:8px 0 0 87px;padding:10px;border:1px solid #2c3c50;border-radius:8px;background:#0b1421}.split{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid #243348;padding:5px 0;font-size:12px}.split:last-child{border:0}.right{margin-left:auto;text-align:right}.explain{color:var(--muted);font-size:12px;margin-top:11px}.links a{color:#e4be78;text-decoration:none}.links a:hover{text-decoration:underline}.slider{width:100%;accent-color:var(--gold)}.sliderrow{display:flex;justify-content:space-between}.empty{color:var(--muted);padding:18px 0}.footer{font-size:12px;color:var(--muted);line-height:1.7}.footer a{color:var(--gold)}.warn{color:var(--red)}@media(max-width:850px){.layout{grid-template-columns:1fr}.rank{grid-template-columns:22px 40px minmax(90px,1fr) 65px 74px;gap:7px}.score{font-size:19px}.risk{font-size:12px}.best strong{font-size:23px}}@media(max-width:490px){main{padding:15px 10px}.panel{padding:13px}.rankname{font-size:14px}.best img{width:58px;height:58px}.rank{grid-template-columns:20px 35px minmax(65px,1fr) 55px 65px}.rankicon{width:35px;height:35px}.details{margin-left:0}}
+
+.threat-controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}.threat-grid{overflow-x:auto;border:1px solid var(--line);border-radius:10px}.threat-table{width:100%;border-collapse:collapse;font-size:12px;white-space:nowrap}.threat-table th,.threat-table td{padding:9px 10px;border-bottom:1px solid #27384c;text-align:center}.threat-table th:first-child,.threat-table td:first-child{position:sticky;left:0;background:#132035;text-align:left;z-index:1}.threat-table thead th{background:#1c2c40;color:#dfe9f5;font-weight:700}.threat-table tbody tr:last-child td{border-bottom:0}.threat-table .win{background:#173d36;color:#a8f1c3}.threat-table .lose{background:#482c39;color:#ffb8b8}.threat-table .even{color:#b4c3d7}.threat-table .missing{color:#62758f}.tagrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.threat-tag{border:1px solid #40506a;padding:7px 9px;border-radius:8px;font-size:12px;color:#d9e5f5}.threat-tag b{color:#f0c889}.source-card{padding:12px;border:1px solid #3b4a60;background:#101d2e;border-radius:10px;margin-bottom:14px}.source-card a{color:var(--gold)}
+
+.champ-combo{position:relative;min-width:0;flex:1}.champ-combo label{margin-bottom:6px}.combo-shell{position:relative}.combo-shell input{width:100%;background:#0a1220;color:var(--text);border:1px solid #37445c;border-radius:9px;padding:10px 36px 10px 11px;outline:none}.primary .combo-shell input{border-color:var(--gold)}.combo-shell input:focus{border-color:var(--cyan);box-shadow:0 0 0 2px #6dd4d020}.combo-toggle{position:absolute;right:1px;top:1px;bottom:1px;width:34px;background:transparent;border:0;color:var(--muted);font-size:18px}.combo-list{position:absolute;z-index:50;top:calc(100% + 3px);left:0;right:0;max-height:255px;overflow:auto;border:1px solid #597185;border-radius:9px;background:#101e30;box-shadow:0 14px 28px #000b}.combo-list[hidden]{display:none}.combo-option{display:block;border:0;width:100%;padding:9px 12px;background:transparent;color:var(--text);text-align:left}.combo-option:hover,.combo-option.focused{background:#2a4259;color:#f4d49e}.combo-empty{padding:10px;color:var(--muted)}.role-row{grid-template-columns:85px minmax(0,1fr)}.pool-remove{color:#efb0b0;background:transparent;border:1px solid #59404b;border-radius:7px;width:27px;height:30px;font-size:22px;line-height:1}.pool-remove:hover{background:#673b43}.poolitem{flex-wrap:wrap}.poolitem .poolname{min-width:66px}.poolitem label{white-space:nowrap}#poolAdd .combo-list{max-height:300px}
+
+/* In-depth strategic analyzer */
+#analyzerPanel{border-color:#42627a}.analyzer-mini{color:var(--gold);margin:18px 0 10px}.analyzer-allies{display:grid;grid-template-columns:1fr 1fr;gap:2px 12px;margin-bottom:20px}.analyzer-allies .role-row{grid-template-columns:66px minmax(0,1fr);margin:6px 0}#analyzerPick select{width:100%;background:#0a1220;color:var(--text);border:1px solid #536780;border-radius:9px;padding:10px}#analyzerOutput{border-top:1px solid var(--line);padding-top:18px}.analyzer-summary{background:linear-gradient(120deg,#293c52,#182536);border:1px solid #3b5671;border-radius:12px;padding:15px}.analyzer-summary-top{display:flex;align-items:center;gap:14px}.analyzer-icon{width:60px;height:60px;border-radius:9px;object-fit:cover}.analyzer-summary h3{font:25px Georgia,serif;color:#f4d6a4;margin:2px 0}.analyzer-summary p{color:#d3dfef;margin:5px 0}.analyzer-vs{font-size:15px;color:#b9c9dc}.analyzer-tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:13px}.analyzer-tag{border-radius:15px;border:1px solid #577183;padding:3px 9px;font-size:11px;color:#cceaf4}.analyzer-evidence{border-left:3px solid var(--gold);background:#211f2430;padding:11px 13px;margin:15px 0}.analyzer-evidence b{color:#f1d6a5}.analyzer-phase{border-top:1px solid var(--line);padding:18px 0 8px}.analyzer-phase-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}.analyzer-phase-head h3{margin:0;color:#e4eaf5;font-size:16px}.analyzer-step{display:grid;place-items:center;min-width:31px;height:31px;border:1px solid #6e6955;border-radius:8px;color:var(--gold);font-size:12px;font-weight:bold}.analyzer-phase h4{margin:13px 0 4px;color:#b6dce4;font-size:12px;text-transform:uppercase;letter-spacing:.05em}.analyzer-phase p{margin:7px 0 12px;color:#d6dfec;line-height:1.72}.analyzer-phase ul{padding-left:20px;margin:5px 0 13px}.analyzer-phase li{margin:7px 0;color:#d6dfec;line-height:1.6}.analyzer-dual{display:grid;grid-template-columns:1fr 1fr;gap:15px}.roster-line{border:1px solid var(--line);border-radius:8px;padding:9px;margin-bottom:7px;background:#0e1b2a}.roster-line b{display:block;font-size:12px}.roster-line small{display:block;font-size:11px;color:var(--muted);line-height:1.5;margin-top:3px}.roster-line.missing{opacity:.72}@media(max-width:650px){.analyzer-allies,.analyzer-dual{grid-template-columns:1fr}}
+
+/* V11 advanced matchup research panel */
+.research-pane{border:1px solid #48637b;border-radius:12px;padding:15px;background:#101e2e;margin:16px 0}
+.research-pane h3{color:#f6d89e;font-size:17px;margin:0 0 7px}.research-sub{font-size:12px;color:#aebfd1;line-height:1.55;margin-bottom:12px}
+.research-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.research-grid>div{padding:11px;border:1px solid #36495f;border-radius:9px;background:#162537}
+.research-grid b{display:block;color:#99d9df;font-size:11px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px}.research-grid p{margin:0;color:#e0e7f0;line-height:1.62;font-size:13px}
+.source-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.source-links a{border:1px solid #5e7489;border-radius:8px;color:#f6d89e;padding:7px 10px;text-decoration:none;font-size:12px}.source-links a:hover{background:#27425b}
+.matchup-badge{display:inline-block;border:1px solid #597185;border-radius:5px;padding:3px 7px;color:#dae7ee;font-size:11px;margin-left:7px}
+@media(max-width:650px){.research-grid{grid-template-columns:1fr}}
+
+/* V13 compact workspace: one task at a time, no endless vertical dashboard */
+.workspace-tabs{display:flex;gap:7px;position:sticky;top:0;z-index:20;padding:9px;margin:-9px -9px 12px;background:#090e19f5;border-radius:12px;backdrop-filter:blur(10px);overflow-x:auto}
+.workspace-tab,.guide-tab{flex:1;white-space:nowrap;min-width:max-content;border:1px solid #384c64;border-radius:9px;background:#172337;color:#aebfd2;padding:10px 13px;font-weight:750;font-size:12px}
+.workspace-tab[aria-selected="true"],.guide-tab[aria-selected="true"]{border-color:var(--gold);background:#423a2b;color:#fce3ac}
+.workspace-tab:focus-visible,.guide-tab:focus-visible,.collapse-toggle:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.workspace-pane[hidden]{display:none!important}
+.workspace-pane>.panel{margin-bottom:0}
+.guide-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:15px 0 8px;padding:5px 0}
+.guide-tab{flex:0 1 auto;min-width:0;padding:8px 10px}
+.guide-section-hidden{display:none!important}
+.collapse-toggle{background:#152639;color:#e8d3a9;border:1px solid #354860;border-radius:8px;padding:9px 11px;width:100%;display:flex;justify-content:space-between;align-items:center;font-weight:750;letter-spacing:.03em;margin:0}
+.collapse-content[hidden]{display:none!important}
+.compact-side .panel{padding:14px;margin-bottom:12px}
+.compact-side .panel h2{margin-bottom:10px}
+.compact-side .panel .help{font-size:11px}
+.compact-side .side-collapsed{padding:11px}
+.compact-side .side-collapsed h2{margin:0}
+#analyzerOutput{padding-top:10px}
+#analyzerPanel>.help{margin-top:2px}
+.guide-hint{font-size:12px;color:#9db2c7;margin:4px 0 12px}
+@media(min-width:850px){.compact-side{position:sticky;top:12px;align-self:start;max-height:calc(100vh - 20px);overflow-y:auto;scrollbar-width:thin;padding-right:3px}}
+@media(max-width:850px){.workspace-tabs{top:0}.layout{grid-template-columns:1fr}.compact-side{position:static}.guide-tabs{flex-wrap:nowrap;overflow-x:auto}}
+
+/* Five-role layout: keep five allied slots directly above enemy slots. */
+.role-tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px}
+.role-tabs .tab{padding:9px 3px;font-size:11px;min-width:0}
+.draft-divider{display:flex;justify-content:space-between;align-items:center;margin:12px 0 5px}
+.draft-divider h2{margin:0}
+.draft-divider .help{font-size:10px}
+.draft-rows .role-row{grid-template-columns:74px minmax(0,1fr);gap:7px;margin:5px 0}
+.draft-rows .role-row label{font-size:11px}
+.draft-rows .combo-shell input{padding:7px 30px 7px 9px;height:34px}
+.draft-rows .combo-toggle{width:29px}
+.draft-rows .primary .combo-shell input{border-color:var(--gold)}
+.sidebar-draft-actions{margin-top:12px}
+.analyzer-dual .roster-line{overflow-wrap:anywhere}
+@media (max-width:850px){.compact-side{max-height:none}.draft-rows .role-row{grid-template-columns:70px minmax(0,1fr)}}
+
+.data-health{display:grid;grid-template-columns:1fr auto auto;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:12px;margin:12px 0}
+.data-health>div{padding:9px 10px;border-bottom:1px solid var(--line);min-width:0}.data-health>div:nth-last-child(-n+3){border-bottom:0}.data-health .dh-head{background:#21334a;color:#d3e8f7;font-weight:800}.data-health a{color:var(--gold);text-decoration:underline}.data-health .loaded{color:var(--green)}.data-health .missing{color:#e8c88c}.data-health .n/a{color:var(--muted)}
+.draft-warnings{margin:9px 0 0;border:1px solid #8d5843;color:#ffd3ac;background:#39251c80;border-radius:8px;padding:9px;font-size:12px}
+@media(max-width:440px){.data-health>div{padding:7px 5px;font-size:11px}}
+@media(max-width:850px){.layout{grid-template-columns:minmax(0,1fr)}.layout>aside,.layout>section{min-width:0;width:100%}.workspace-tabs{max-width:100%;min-width:0}.workspace-tab{min-width:0;flex:0 0 auto}.role-tabs{width:100%}.role-tabs .tab{min-width:0}.draft-divider>*{min-width:0}.draft-divider .help{text-align:right}.rank{min-width:0}}
+</style></head><body><header><div><h1>RIFT / DRAFT</h1><p>All five roles · Patch-aware · Draft, matchups &amp; automatic statistics</p></div><div class="status" id="status"><span class="dot"></span><span id="statusText">Connecting to matchup data…</span></div></header><main><div class="layout"><aside><div class="panel"><h2>01 / Your lane</h2><div class="tabs role-tabs" id="laneTabs" aria-label="Your position"><button type="button" id="topBtn" data-lane="top" class="tab active">TOP</button><button type="button" id="jungleBtn" data-lane="jungle" class="tab">JGL</button><button type="button" id="midBtn" data-lane="middle" class="tab">MID</button><button type="button" id="bottomBtn" data-lane="bottom" class="tab">BOT</button><button type="button" id="supportBtn" data-lane="support" class="tab">SUP</button></div><div class="draft-divider"><h2>02 / Allied draft</h2><span class="help">Your champion highlighted ★</span></div><div id="allies" class="draft-rows"></div><div class="draft-divider"><h2>03 / Enemy draft</h2><span class="help">Search all 173 champions</span></div><div class="help">Unknown slots stay blank. Bot and Support are evaluated together in their shared lane; all other enemy roles also influence the model.</div><div id="enemies" class="draft-rows" style="margin-top:10px"></div><div id="draftIssues" role="status" aria-live="polite"></div><div class="controls" style="margin-top:14px"><button class="smallbtn" id="clear">Clear enemy team</button><button class="smallbtn" id="clearAllies">Clear teammates</button><button class="smallbtn" id="refresh">↻ Check for updates</button><button class="smallbtn" id="importBtn">Import JSON (backup)</button><input id="importFile" type="file" accept=".json,.txt,application/json,text/plain" multiple hidden></div><div class="help" id="sourceHelp" style="margin-top:9px">Hosted version: automatic updates enabled after initial deployment. Manual JSON import remains available as backup.</div></div><div class="panel"><h2>04 / Your champion pool</h2><div class="help">Search and add any champion to this lane. Remove champions you no longer play; use Out for temporary bans. Saved separately for each of the five roles.</div><div id="poolAdd" class="field" style="margin-top:12px"></div><div id="pool"></div><button class="smallbtn" id="profilePreset" style="margin-top:8px">Use my OP.GG mastery as comfort starting point</button><div class="help" style="margin-top:13px">Profile: <a style="color:var(--gold)" href="https://op.gg/lol/summoners/na/Meet%20your%20enemy-NA1" target="_blank" rel="noopener">Meet your enemy#NA1 on OP.GG</a>. Your comfort ratings remain editable, and this page does not scrape OP.GG.</div></div><div class="panel"><h2>05 / Model settings</h2><div class="field"><div class="sliderrow"><label for="laneWeight">Lane-matchup importance</label><span id="laneWeightLabel">60%</span></div><input class="slider" id="laneWeight" type="range" min="30" max="90" step="5" value="60"></div><div class="field"><div class="sliderrow"><label for="comfortWeight">Comfort adjustment</label><span id="comfortWeightLabel">0.7</span></div><input class="slider" id="comfortWeight" type="range" min="0" max="1.5" step="0.1" value="0.7"></div><div class="field"><div class="sliderrow"><label for="recencyWeight">Patch 26.22 emphasis</label><span id="recencyWeightLabel">80% recent / 20% history</span></div><input class="slider" id="recencyWeight" type="range" min="60" max="100" step="5" value="80"><div class="help">Historical data is already recency-weighted by the publisher. This setting controls its additional influence in your rankings. Only 26.22 data available? It automatically uses 100% recent.</div></div><div class="field"><label for="minGames">Minimum matchup sample size</label><select id="minGames"><option value="100" selected>100 games · patch-specific</option><option value="300">300 games · conservative</option><option value="1000">1,000 games · conservative</option><option value="3000">3,000 games · strict</option></select></div><label class="checkline"><input type="checkbox" id="blindOnly"> What-if blind mode (ignore revealed opponents)</label><label class="checkline" style="margin-top:10px"><input type="checkbox" id="teamFitToggle" checked> Include modest ally-team fit adjustment</label><p class="help">The ally adjustment uses transparent composition heuristics, not measured synergy win rates.</p><p class="help">Settings and champion comfort are saved in this browser.</p></div></aside><section><div class="panel"><div class="banner"><h2>Recommended pick</h2><span class="meta" id="dataInfo">Waiting for stats</span></div><div id="results"><div class="empty">Fetching current public matchup dataset…</div></div></div><div class="panel" id="analyzerPanel"><div class="banner"><h2>Matchup analyzer · Ability-level research + all 10 players</h2><button class="smallbtn" id="analyzerCopy" type="button">Copy guide</button></div><p class="help">Build a phase-by-phase win-condition guide using your champion, the allied draft above the enemy draft on the left. Includes opponent ability interactions, punish windows, source-linked specialist insights where available, wave and jungle plans, objective setup, and matchup evidence. Select your champion and enter as many allies as you know. Strategic guidance is heuristic unless labeled with verified matchup statistics.</p><div id="analyzerPick" class="field"></div><div id="analyzerOutput"></div></div><div class="panel"><div class="banner"><h2>Pool matchup threat explorer · all five roles</h2><span class="meta">Independent analysis of your imported data</span></div><div class="source-card"><b>Machine LoLing Pool Designer</b><div class="help">Its proprietary results are not copied into Rift Draft. <a href="https://pooldesigner.machineloling.com/" target="_blank" rel="noopener">Open Pool Designer ↗</a> for an independent comparison of your pool.</div></div><div class="threat-controls"><label style="margin:0" for="threatRole">Opponent role</label><select id="threatRole" style="background:#0b1422;color:var(--text);padding:7px;border:1px solid var(--line);border-radius:7px"></select><label style="margin:0" for="threatCount">Common opponents</label><select id="threatCount" style="background:#0b1422;color:var(--text);padding:7px;border:1px solid var(--line);border-radius:7px"><option value="10">10</option><option value="15" selected>15</option><option value="25">25</option></select><label class="checkline" style="margin:0"><input id="onlyGaps" type="checkbox"> Show only opponents with no favorable answer</label></div><div id="threatMap" class="help">Import stats to see pool matchup data.</div></div><div class="panel"><h2>Data &amp; backup center</h2><p class="help">On your hosted website, data is refreshed on a schedule and loaded from the same domain. If the source has not published the newest patch yet, Rift Draft will show that delay. Manual import and backup/restore are still available.</p><div id="dataHealth"></div><div class="controls" style="margin:12px 0 24px"><button type="button" class="smallbtn" id="exportBackup">Export complete backup</button><button type="button" class="smallbtn" id="importBackupBtn">Restore backup</button><input type="file" id="importBackupFile" accept=".json,application/json" hidden><button type="button" class="smallbtn" id="clearStatCache">Clear cached stats</button></div><h2>How the recommendation works</h2><p class="help">Stats favor the <b>newest available data-source patch</b> shown in Data Health, with an optional <b>20-patch historical reference</b>. The <b>Draft Index</b> ranks picks, but is <b>not a predicted win probability</b>. It blends each champion’s adjusted overall win rate, opponent-specific normalized matchup advantage (Δ2), blind-pick downside against common lane opponents (only when your opposing laner has not been entered), and your comfort rating. Enemy roles other than your lane contribute contextual matchup signals when available. Missing data is omitted, not treated as a free win.</p><p class="help">Matchup estimates are shrunk toward neutral for lower sample sizes. Blind safety evaluates only still-unknown opposing lane positions. If role-specific pick-rate files are not imported, available matchups are weighted equally rather than assigning fictitious popularity. For solo lanes and Jungle, the blind penalty disappears when the direct opposing role is known. For Bot and Support, it diminishes when one opposing bot-lane champion is known and disappears when both are revealed. Patch-specific matchup samples can be small, so estimates shrink toward neutral and low-sample matchups are excluded. Earlier patches contribute only through the optional recency-weighted historical reference, with the newest available patch prioritized.</p><div class="links help">Automatically mirrored statistics from <a href="https://github.com/shizukaziye/lol-pool-coverage" target="_blank" rel="noopener">LoL Pool Coverage</a> (Lolalytics-derived patch snapshots) · <a href="https://lolalytics.com/" target="_blank" rel="noopener">Lolalytics</a> · <a href="https://developer.riotgames.com/docs/lol" target="_blank" rel="noopener">Riot Data Dragon</a></div></div></section></div><div class="footer">Unofficial fan tool. Not affiliated with Riot Games. League of Legends and its champions are trademarks of Riot Games. Uses public community data with an attribution link above; freshness and accuracy depend on the upstream project. All patch-specific observations are explicitly labeled; the optional historical reference spans 20 patches. When deployed on GitHub Pages, a scheduled data updater serves same-origin statistics and checks for patch changes. Local downloaded HTML continues to support manual imports.</div></main><script>
+
+'use strict';
+const BASE='https://raw.githubusercontent.com/shizukaziye/lol-pool-coverage/main/data/';
+const DEFAULT_POOLS={
+ top:[['Darius','122'],['Irelia','39'],['Malphite','54'],['Olaf','2'],['Rumble','68']],
+ jungle:[['Lee Sin','64'],['Vi','254'],['Viego','234'],['Nocturne','56'],['Lillia','876']],
+ middle:[['Akali','84'],['Fizz','105'],['Qiyana','246'],['Taliyah','163'],['Yasuo','157']],
+ bottom:[['Jinx','222'],["Kai'Sa",'145'],['Ezreal','81'],['Caitlyn','51'],['Xayah','498']],
+ support:[['Thresh','412'],['Nautilus','111'],['Rakan','497'],['Lulu','117'],['Nami','267']]
+};
+const POOLS={top:[],jungle:[],middle:[],bottom:[],support:[]};
+const ROLES=[['top','TOP'],['jungle','JUNGLE'],['middle','MID'],['bottom','BOT'],['support','SUPPORT']];
+const LANE_KEYS=ROLES.map(([r])=>r);
+const ROLE_NAMES={top:'Top',jungle:'Jungle',middle:'Mid',bottom:'Bot',support:'Support'};
+const PARTNER_ROLE={bottom:'support',support:'bottom'};
+const LANE_OPP_ROLES=role=>PARTNER_ROLE[role]?[role,PARTNER_ROLE[role]]:[role];
+const laneRevealed=(enemies,role)=>LANE_OPP_ROLES(role).filter(r=>enemies[r]).length/LANE_OPP_ROLES(role).length;
+
+const FALLBACK={Aatrox:266,Ahri:103,Akali:84,Akshan:166,Alistar:12,Ambessa:799,Amumu:32,Anivia:34,Annie:1,Aphelios:523,Ashe:22,AurelionSol:136,Aurora:893,Azir:268,Bard:432,Belveth:200,Blitzcrank:53,Brand:63,Braum:201,Briar:233,Caitlyn:51,Camille:164,Cassiopeia:69,ChoGath:31,Corki:42,Darius:122,Diana:131,Draven:119,DrMundo:36,Ekko:245,Elise:60,Evelynn:28,Ezreal:81,Fiddlesticks:9,Fiora:114,Fizz:105,Galio:3,Gangplank:41,Garen:86,Gnar:150,Gragas:79,Graves:104,Gwen:887,Hecarim:120,Heimerdinger:74,Hwei:910,Illaoi:420,Irelia:39,Ivern:427,Janna:40,JarvanIV:59,Jax:24,Jayce:126,Jhin:202,Jinx:222,Kaisa:145,Kalista:429,Karma:43,Karthus:30,Kassadin:38,Katarina:55,Kayle:10,Kayn:141,Kennen:85,Khazix:121,Kindred:203,Kled:240,KogMaw:96,KSante:897,LeBlanc:7,LeeSin:64,Leona:89,Lillia:876,Lissandra:127,Locke:805,Lucian:236,Lulu:117,Lux:99,Malphite:54,Malzahar:90,Maokai:57,MasterYi:11,Mel:800,Milio:902,MissFortune:21,Mordekaiser:82,Morgana:25,Naafiri:950,Nami:267,Nasus:75,Nautilus:111,Neeko:518,Nidalee:76,Nilah:895,Nocturne:56,Nunu:20,Olaf:2,Orianna:61,Ornn:516,Pantheon:80,Poppy:78,Pyke:555,Qiyana:246,Quinn:133,Rakan:497,Rammus:33,RekSai:421,Rell:526,Renata:888,Renekton:58,Rengar:107,Riven:92,Rumble:68,Ryze:13,Samira:360,Sejuani:113,Senna:235,Seraphine:147,Sett:875,Shaco:35,Shen:98,Shyvana:102,Singed:27,Sion:14,Sivir:15,Skarner:72,Smolder:901,Sona:37,Soraka:16,Swain:50,Sylas:517,Syndra:134,TahmKench:223,Taliyah:163,Talon:91,Taric:44,Teemo:17,Thresh:412,Tristana:18,Trundle:48,Tryndamere:23,TwistedFate:4,Twitch:29,Udyr:77,Urgot:6,Varus:110,Vayne:67,Veigar:45,Velkoz:161,Vex:711,Vi:254,Viego:234,Viktor:112,Vladimir:8,Volibear:106,Warwick:19,Wukong:62,Xayah:498,Xerath:101,XinZhao:5,Yasuo:157,Yone:777,Yorick:83,Yunara:804,Yuumi:350,Zaahen:904,Zac:154,Zed:238,Zeri:221,Ziggs:115,Zilean:26,Zoe:142,Zyra:143};
+let lane='top',data={},champions={},patch='',ddVersion='16.22.1';
+let liveManifest=null,manifestFingerprint=null,manifestCheckedAt=0,autoUpdateError='';
+function prettyPatch(p=REQUIRED_PATCH){if(!/^\d{2}\.\d{1,2}$/.test(p))return p;const [y,n]=p.split('.');return (Number(y)+10)+'.'+n;}
+const $=id=>document.getElementById(id),nf=n=>Number(n||0).toLocaleString('en-US'),fmt=n=>(n>=0?'+':'')+n.toFixed(2),esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function getStore(){try{return JSON.parse(localStorage.getItem('riftDraftSettings')||'{}')}catch{return {}}}let store=getStore();if(LANE_KEYS.includes(store.activeLane))lane=store.activeLane;function save(){try{localStorage.setItem('riftDraftSettings',JSON.stringify(store))}catch{}}
+// Champion images: try multiple independently hosted sources. Browser image requests
+// don't need JSON/CORS access. All portrait failures end with a local SVG placeholder.
+const CHAMPION_ICON_IDS=Object.fromEntries(Object.entries(FALLBACK).map(([n,id])=>[n,String(id)]));
+for(const pool of Object.values(POOLS))for(const [n,id] of pool)CHAMPION_ICON_IDS[n]=id;
+function iconKey(name){let key=String(name).replace(/[^a-zA-Z0-9]/g,'');const rename={Wukong:'MonkeyKing',LeBlanc:'Leblanc',ChoGath:'Chogath',Velkoz:'Velkoz',Kaisa:'Kaisa',Khazix:'Khazix',Nunu:'Nunu',KSante:'KSante',RenataGlasc:'Renata'};return rename[key]||key}
+function icon(name){return `https://ddragon.leagueoflegends.com/cdn/${ddVersion}/img/champion/${iconKey(name)}.png`}
+function portrait(name,cssClass='',extra=''){
+  return `<img class="${cssClass}" data-portrait="${esc(name)}" data-portrait-stage="0" src="${icon(name)}" alt="${esc(name)} portrait" loading="lazy" ${extra}>`;
+}
+function placeholderPortrait(name){
+ const initials=String(name).split(/\s+/).map(x=>x[0]||'').join('').slice(0,2).toUpperCase();
+ const label=esc(initials||'?');
+ const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128"><defs><linearGradient id="g" x2="1" y2="1"><stop stop-color="#32465e"/><stop offset="1" stop-color="#122033"/></linearGradient></defs><rect width="128" height="128" fill="url(#g)"/><circle cx="64" cy="64" r="54" fill="none" stroke="#c2a36b" stroke-width="2" opacity=".6"/><text x="64" y="79" font-size="43" font-family="Georgia,serif" text-anchor="middle" fill="#f1d8a8">${label}</text></svg>`;
+ return 'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
+}
+// Event delegation survives every innerHTML re-render, including a new lane selection.
+document.addEventListener('error',e=>{
+ const img=e.target;
+ if(!(img instanceof HTMLImageElement)||!img.hasAttribute('data-portrait'))return;
+ const name=img.dataset.portrait,stage=Number(img.dataset.portraitStage||0),id=CHAMPION_ICON_IDS[name];
+ const alternatives=[
+   id?`https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/${id}.png`:null,
+   `https://ddragon.leagueoflegends.com/cdn/16.21.1/img/champion/${iconKey(name)}.png`,
+   id?`https://cdn.communitydragon.org/latest/champion/${id}/square`:null
+ ].filter(Boolean);
+ img.dataset.portraitStage=String(stage+1);
+ img.src=alternatives[stage]||placeholderPortrait(name);
+ if(stage>=alternatives.length){img.removeAttribute('data-portrait');img.title='Image hosts unavailable — showing name instead';}
+},true);
+
+// Full patch-26.22 roster is shipped with the HTML, so blocked fetches or
+// incomplete statistics cannot shrink the enemy selection dropdown.
+const CHAMPION_DISPLAY={AurelionSol:'Aurelion Sol',Belveth:"Bel'Veth",ChoGath:"Cho'Gath",DrMundo:'Dr. Mundo',JarvanIV:'Jarvan IV',Kaisa:"Kai'Sa",Khazix:"Kha'Zix",KogMaw:"Kog'Maw",KSante:"K'Sante",LeBlanc:'LeBlanc',LeeSin:'Lee Sin',MasterYi:'Master Yi',MissFortune:'Miss Fortune',Nunu:'Nunu & Willump',RekSai:"Rek'Sai",Renata:'Renata Glasc',TahmKench:'Tahm Kench',TwistedFate:'Twisted Fate',Velkoz:"Vel'Koz",Wukong:'Wukong',XinZhao:'Xin Zhao'};
+for(const [n,id] of Object.entries(FALLBACK))CHAMPION_ICON_IDS[CHAMPION_DISPLAY[n]||n]=String(id);
+const ROSTER_BY_ID=Object.fromEntries(Object.entries(FALLBACK).map(([name,id])=>[String(id),CHAMPION_DISPLAY[name]||name]));
+function entries(){
+ const merged=new Map(Object.entries(ROSTER_BY_ID));
+ for(const [id,champ] of Object.entries(champions))if(champ?.name && /^\d+$/.test(String(id)))merged.set(String(id),String(champ.name));
+ return [...merged].sort((a,b)=>a[1].localeCompare(b[1],'en'));
+}
+function nameFor(id){return champions[String(id)]?.name||ROSTER_BY_ID[String(id)]||'Champion '+id}
+function initPools(){
+ for(const l of LANE_KEYS){
+  const existing=store[l]?.pool;
+  const fallback=DEFAULT_POOLS[l].map(([,id])=>id);
+  const ids=Array.isArray(existing)?existing.map(String):fallback;
+  const valid=new Set(Object.keys(ROSTER_BY_ID));
+  const selected=[...new Set(ids.filter(id=>valid.has(id)))];
+  store[l] ||= {enemies:{},comfort:{},disabled:{}};
+  store[l].pool=selected;
+  POOLS[l]=selected.map(id=>[nameFor(id),id]);
+ }
+}
+function updatePool(l,ids){
+ const valid=new Set(Object.keys(ROSTER_BY_ID));
+ const next=[...new Set(ids.map(String).filter(id=>valid.has(id)))];
+ settings().pool=next;
+ POOLS[l]=next.map(id=>[nameFor(id),id]);
+ save();rebuildLane(l);renderControls();renderResults();
+}
+// A searchable, fully keyboard-accessible selector, powered by the bundled roster.
+// No network request, jquery, or third-party UI library is required.
+function comboMarkup(id,label,value='',excluded=[]){
+ const selected=value?nameFor(value):'';
+ return `<div class="champ-combo" data-combo="${esc(id)}" data-value="${esc(value)}">
+  <label for="combo-${esc(id)}">${esc(label)}</label>
+  <div class="combo-shell"><input id="combo-${esc(id)}" class="combo-input" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="list-${esc(id)}" autocomplete="off" spellcheck="false" type="text" placeholder="Search champion…" value="${esc(selected)}"><button class="combo-toggle" type="button" aria-label="Show champion choices">▾</button></div>
+  <div class="combo-list" id="list-${esc(id)}" role="listbox" hidden></div>
+ </div>`;
+}
+function setupCombos(){
+ const roster=entries();
+ for(const root of document.querySelectorAll('.champ-combo')){
+  const input=root.querySelector('.combo-input'),list=root.querySelector('.combo-list'),toggle=root.querySelector('.combo-toggle');
+  let choices=[],active=0;
+  const isAdd=root.dataset.combo==='pool-add',isSelf=root.dataset.combo.startsWith('self-');
+  function filter(){
+   const q=input.value.toLocaleLowerCase().replace(/[^a-z0-9]/g,'');
+   return roster.filter(([id,name])=>!isAdd||!POOLS[lane].some(x=>x[1]===id)).filter(([id,name])=>name.toLocaleLowerCase().replace(/[^a-z0-9]/g,'').includes(q)).slice(0,60);
+  }
+  function draw(){
+   choices=filter();active=Math.min(active,Math.max(0,choices.length-1));
+   const blank=!isAdd && !input.value.trim();
+   list.innerHTML=(blank?'<button type="button" class="combo-option" role="option" data-choice="" aria-selected="false">Unknown / Clear</button>':'')+choices.map(([id,name],i)=>`<button type="button" role="option" class="combo-option ${i===active?'focused':''}" data-choice="${esc(id)}" aria-selected="${i===active}">${esc(name)}</button>`).join('')+(!choices.length?'<div class="combo-empty">No champions found</div>':'');
+   list.hidden=false;input.setAttribute('aria-expanded','true');
+  }
+  function close(restore=true){list.hidden=true;input.setAttribute('aria-expanded','false');if(restore)input.value=root.dataset.value?nameFor(root.dataset.value):'';}
+  function choose(id){
+   if(isAdd){if(!id)return;updatePool(lane,[...POOLS[lane].map(x=>x[1]),id]);}
+   else if(isSelf){
+    settings().analyzerPick=id||'';
+    if(id && !POOLS[lane].some(x=>x[1]===id)){settings().disabled[id]=false;updatePool(lane,[...POOLS[lane].map(x=>x[1]),id]);}
+    else {save();renderControls();renderResults();}
+   }
+   else if(root.dataset.combo.startsWith('ally-')){const role=root.dataset.combo.slice(5);settings().allies||={};settings().allies[role]=id;save();root.dataset.value=id;input.value=id?nameFor(id):'';close(false);renderResults();}
+   else{const role=root.dataset.combo.slice(6);settings().enemies[role]=id;save();root.dataset.value=id;input.value=id?nameFor(id):'';close(false);renderResults();}
+  }
+  input.addEventListener('focus',()=>{input.select();active=0;draw()});
+  input.addEventListener('input',()=>{active=0;draw()});
+  toggle.addEventListener('click',()=>{if(list.hidden){input.focus();input.value='';draw()}else close()});
+  list.addEventListener('mousedown',e=>e.preventDefault());
+  list.addEventListener('click',e=>{const b=e.target.closest('[data-choice]');if(b)choose(b.dataset.choice)});
+  input.addEventListener('keydown',e=>{
+   if(e.key==='Escape'){e.preventDefault();close();input.blur();return}
+   if(e.key==='ArrowDown'||e.key==='ArrowUp'){
+    e.preventDefault();if(list.hidden)draw();else{active=(active+(e.key==='ArrowDown'?1:-1)+choices.length)%Math.max(1,choices.length);draw();const el=list.querySelectorAll('[data-choice]')[active];el?.scrollIntoView({block:'nearest'});}return;
+   }
+   if(e.key==='Enter'){
+    e.preventDefault();if(list.hidden)draw();const choice=choices[active];if(choice)choose(choice[0]);else if(!isAdd&&!input.value.trim())choose('');return;
+   }
+  });
+  input.addEventListener('blur',()=>setTimeout(()=>close(),120));
+  if(!isAdd){root.querySelector('label').style.display='none';}
+ }
+}
+
+
+function settings(){return store[lane]||(store[lane]={enemies:{},comfort:{},disabled:{}})}
+function roleSelect(role,label){return `<div class="role-row ${role===lane?'primary':''}"><label>${label}${role===lane?' ★':''}</label>${comboMarkup('enemy-'+role,label,settings().enemies[role]||'')}</div>`}
+function renderControls(){
+ const s=settings();
+ document.querySelectorAll('#laneTabs [data-lane]').forEach(b=>{b.classList.toggle('active',b.dataset.lane===lane);b.setAttribute('aria-pressed',String(b.dataset.lane===lane));});
+ $('enemies').innerHTML=ROLES.map(([r,n])=>roleSelect(r,n)).join('');
+ $('poolAdd').innerHTML=comboMarkup('pool-add','Add champion');
+ $('pool').innerHTML=POOLS[lane].length?POOLS[lane].map(([n,id])=>{
+  const c=s.comfort[id]??3,d=s.disabled[id]??false;
+  return `<div class="poolitem">${portrait(n)}<span class="poolname">${esc(n)}</span><label style="margin:0">Comfort <select data-comfort="${id}">${[1,2,3,4,5].map(x=>`<option ${c===x?'selected':''} value="${x}">${x}/5</option>`).join('')}</select></label><label class="checkline" title="Disable / banned"><input data-disabled="${id}" type="checkbox" ${d?'checked':''}>Out</label><button type="button" class="pool-remove" data-remove="${id}" title="Remove ${esc(n)} from pool" aria-label="Remove ${esc(n)}">×</button></div>`;
+ }).join(''):'<div class="help" style="padding:10px 0">No champions in this lane yet. Search above to add your first pick.</div>';
+ // Searchable inputs are initialized after both draft panels have rendered.
+ renderThreatRoleSelect();
+ document.querySelectorAll('[data-comfort]').forEach(x=>x.onchange=()=>{s.comfort[x.dataset.comfort]=Number(x.value);save();renderResults()});
+ document.querySelectorAll('[data-disabled]').forEach(x=>x.onchange=()=>{s.disabled[x.dataset.disabled]=x.checked;save();renderResults()});
+ document.querySelectorAll('[data-remove]').forEach(x=>x.onclick=()=>updatePool(lane,POOLS[lane].map(p=>p[1]).filter(id=>id!==x.dataset.remove)));
+}
+function status(message,kind=''){const x=$('status');x.className='status '+kind;$('statusText').textContent=message}
+// IndexedDB is used instead of localStorage because complete matchup datasets are large.
+function dbOpen(){return new Promise((resolve,reject)=>{if(!('indexedDB' in window))return reject(Error('IndexedDB unavailable'));const r=indexedDB.open('riftDraftStats',1);r.onupgradeneeded=()=>r.result.createObjectStore('json');r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error)})}
+async function dbGet(key){try{const db=await dbOpen();return await new Promise((resolve,reject)=>{const t=db.transaction('json','readonly'),r=t.objectStore('json').get(key);r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error);t.oncomplete=()=>db.close()})}catch{return null}}
+async function dbPut(key,value){try{const db=await dbOpen();return await new Promise((resolve,reject)=>{const t=db.transaction('json','readwrite');t.objectStore('json').put(value,key);t.oncomplete=()=>{db.close();resolve()};t.onerror=()=>reject(t.error)})}catch{return null}}
+// Riot labels the 2026 season patches 26.xx; the Lolalytics dataset uses 16.xx.
+// The snapshots at data/snapshots/16.22 correspond to game patch 26.22.
+let REQUIRED_PATCH='16.22';
+const validateLane=(obj,l)=>!!(obj&&typeof obj==='object'&&obj.lane===l&&obj.patch===REQUIRED_PATCH&&obj.schema_version===2&&obj.matchups&&obj.tierlist&&Object.keys(obj.matchups).length>50&&typeof obj.scraped_at==='string');
+const validateHistory=(obj,l)=>!!(obj&&typeof obj==='object'&&obj.lane===l&&obj.schema_version===2&&obj.matchups&&obj.tierlist&&Array.isArray(obj.source_patches)&&obj.source_patches.length===20&&obj.source_patches[0]===REQUIRED_PATCH&&typeof obj.generated_at==='string');
+const MIRRORS={recent:[
+ l=>`./data/recent/${l}.json?v=${(liveManifest?.recent?.[l]?.sha256||'').slice(0,16)}`,
+ l=>`https://raw.githubusercontent.com/shizukaziye/lol-pool-coverage/main/data/snapshots/${REQUIRED_PATCH}/${l}.json`,
+ l=>`https://shizukaziye.github.io/lol-pool-coverage/data/snapshots/${REQUIRED_PATCH}/${l}.json`,
+ l=>`https://cdn.jsdelivr.net/gh/shizukaziye/lol-pool-coverage@main/data/snapshots/${REQUIRED_PATCH}/${l}.json`
+],history:[
+ l=>`./data/history/${l}.json?v=${(liveManifest?.history?.[l]?.sha256||'').slice(0,16)}`,
+ l=>`https://raw.githubusercontent.com/shizukaziye/lol-pool-coverage/main/data/weighted/${l}.json`,
+ l=>`https://shizukaziye.github.io/lol-pool-coverage/data/weighted/${l}.json`,
+ l=>`https://cdn.jsdelivr.net/gh/shizukaziye/lol-pool-coverage@main/data/weighted/${l}.json`
+]};
+const SOURCE_LINKS=()=>['recent','history'].map(type=>`<b>${type==='recent'?'Patch '+prettyPatch():'20-patch weighted'}:</b> `+ROLES.map(([l,label])=>`<a href="https://raw.githubusercontent.com/shizukaziye/lol-pool-coverage/main/data/${type==='recent'?'snapshots/'+REQUIRED_PATCH:'weighted'}/${l}.json" target="_blank" rel="noopener" style="color:var(--gold)">${label} ↗</a>`).join(' · ')).join('<br>')+'<br>Save .json or .txt; import up to ten files. Historical data overlaps with the current patch and is treated as a prior, not an independent sample.';
+function displaySource(message){$('sourceHelp').innerHTML=message+'<details style="margin-top:10px"><summary style="cursor:pointer;color:var(--gold)">Manual dataset links for all five roles</summary><div style="padding-top:8px;line-height:1.9">'+SOURCE_LINKS()+'</div></details>'}
+async function fetchJson(url,ms=10000){const ctl=new AbortController(),timer=setTimeout(()=>ctl.abort(),ms);try{const res=await fetch(url,{cache:'no-store',signal:ctl.signal});if(!res.ok)throw Error('HTTP '+res.status);return await res.json()}finally{clearTimeout(timer)}}
+async function getLane(l,type){let err='';for(const urlFn of MIRRORS[type]){try{const obj=await fetchJson(urlFn(l),15500);if(!(type==='recent'?validateLane:validateHistory)(obj,l))throw Error('Wrong patch/schema');return obj}catch(e){err=e.message}}throw Error(err||'Downloads blocked')}
+let CACHE_PREFIX='patch-'+REQUIRED_PATCH+':', HISTORY_PREFIX='history-20patch-'+REQUIRED_PATCH+':';
+let currentData={},historicalData={};
+function rebuildLane(l){
+ const recent=currentData[l],history=historicalData[l]; if(!recent&&!history){delete data[l];return;}
+ const combined={lane:l,patch:REQUIRED_PATCH,scraped_at:recent?.scraped_at??history?.generated_at,hasRecent:!!recent,hasHistory:!!history,tierlist:{},matchups:{}};
+ for(const id of new Set([...Object.keys(recent?.tierlist||{}),...Object.keys(history?.tierlist||{})])){
+  const a=recent?.tierlist?.[id],b=history?.tierlist?.[id];
+  combined.tierlist[id]={wrRecent:Number.isFinite(Number(a?.wr))?Number(a.wr):null,wrHistoric:Number.isFinite(Number(b?.wr))?Number(b.wr):null,pr:a?.pr??b?.pr??0,recentGames:Number(a?.games||0),historicGames:Number(b?.games_total||b?.games||0)};
+ }
+ // Only your playable champions need entire matchup dictionaries; this avoids
+ // needlessly copying every other champion's large historical record.
+ for(const [,id] of POOLS[l]){
+  const recentRoles=recent?.matchups?.[id]||{},historyRoles=history?.matchups?.[id]||{};
+  combined.matchups[id]={};
+  for(const role of new Set([...Object.keys(recentRoles),...Object.keys(historyRoles)])){
+   const rm=recentRoles[role]||{},hm=historyRoles[role]||{};
+   combined.matchups[id][role]={};
+   for(const opp of new Set([...Object.keys(rm),...Object.keys(hm)]))combined.matchups[id][role][opp]={recent:rm[opp]||null,history:hm[opp]||null};
+  }
+ }
+ data[l]=combined;
+}
+function statusFromData(){
+ const recent=LANE_KEYS.filter(l=>currentData[l]).length,older=LANE_KEYS.filter(l=>historicalData[l]).length;
+ status(recent?`Patch ${prettyPatch()}: ${recent}/5 roles · History: ${older}/5`:older?`Historical only · ${older}/5 roles`:'No stats imported',recent?'good':older?'':'bad');
+ if(typeof renderDataHealth==='function')renderDataHealth();
+ displaySource(`Data available: <b>${recent}/5</b> patch ${prettyPatch()} snapshots and <b>${older}/5</b> historical datasets. ${liveManifest&&!liveManifest.source_fresh?`<span class="warn">Riot is on ${prettyPatch(liveManifest.riot_patch)}. Statistics provider is still on ${prettyPatch()}.</span> `:''} ${!recent?'Historical-only recommendations are discounted and not current-patch claims. ':''}If live downloads fail, manually import the files below.`);
+}
+let cachedBoot=false, activeLoadPromise=null;
+const fetchedRoleAt={};
+async function readCacheOnce(){
+ if(cachedBoot)return;
+ cachedBoot=true;
+ status('Reading previously imported datasets…');
+ await Promise.all(LANE_KEYS.flatMap(l=>['recent','history'].map(async type=>{
+  const key=(type==='recent'?CACHE_PREFIX:HISTORY_PREFIX)+l;
+  const obj=await dbGet(key),valid=type==='recent'?validateLane:validateHistory;
+  if(valid(obj,l))(type==='recent'?currentData:historicalData)[l]=obj;
+ })));
+ for(const l of LANE_KEYS)rebuildLane(l);
+ statusFromData();renderControls();renderResults();
+}
+async function ensureRole(l,force=false){
+ await readCacheOnce();
+ const now=Date.now();
+ if(!force && fetchedRoleAt[l] && now-fetchedRoleAt[l]<3600000)return;
+ if(!force && currentData[l] && historicalData[l])return;
+ if(activeLoadPromise){await activeLoadPromise;if(!force && currentData[l] && historicalData[l])return;}
+ fetchedRoleAt[l]=now;
+ const run=(async()=>{
+  const needed=['recent','history'].filter(type=>force||!(type==='recent'?currentData:historicalData)[l]);
+  if(!needed.length){statusFromData();return;}
+  status(`Checking ${ROLE_NAMES[l]} stats (${needed.length} file${needed.length>1?'s':''})…`);
+  const out=await Promise.allSettled(needed.map(async type=>{
+    const obj=await getLane(l,type);
+    (type==='recent'?currentData:historicalData)[l]=obj;
+    await dbPut((type==='recent'?CACHE_PREFIX:HISTORY_PREFIX)+l,obj);
+    rebuildLane(l);
+  }));
+  const errs=out.filter(x=>x.status==='rejected');
+  statusFromData();renderResults();
+  if(errs.length && !data[l]){
+   displaySource(`Automatic downloads failed for ${ROLE_NAMES[l]}. Use manual JSON import below; data has not been fabricated. <span class="warn">${esc(errs[0].reason?.message||'Network unavailable')}</span>`);
+  }
+ })();
+ activeLoadPromise=run;
+ try{await run}finally{if(activeLoadPromise===run)activeLoadPromise=null}
+}
+async function load(force=false){await readCacheOnce();await ensureRole(lane,force)}
+async function importFiles(files){
+ let valid=0,errors=[];
+ for(const file of [...files]){try{
+  const obj=JSON.parse(await file.text()),l=obj?.lane;
+  if(!LANE_KEYS.includes(l))throw Error('Unknown role');
+  const type=validateLane(obj,l)?'recent':validateHistory(obj,l)?'history':null;
+  if(!type)throw Error('Expected patch '+REQUIRED_PATCH+' snapshot or 20-patch weighted dataset ending in '+REQUIRED_PATCH);
+  (type==='recent'?currentData:historicalData)[l]=obj;
+  await dbPut((type==='recent'?CACHE_PREFIX:HISTORY_PREFIX)+l,obj);
+  rebuildLane(l);valid++;
+ }catch(e){errors.push(file.name+': '+e.message)}}
+ statusFromData();renderControls();renderResults();
+ if(errors.length)displaySource(`${valid} file(s) imported. <span class="warn">Rejected: ${esc(errors.join('; '))}</span>`);
+}
+initPools();
+$('profilePreset').onclick=()=>{const t=store.top||(store.top={enemies:{},comfort:{},disabled:{}});const m=store.middle||(store.middle={enemies:{},comfort:{},disabled:{}});m.comfort['246']=5;m.comfort['157']=5;save();renderControls();renderResults();$('sourceHelp').textContent='OP.GG mastery starting points applied to Qiyana and Yasuo. Mastery is not a verified current win-rate measure.'};$('importBtn').onclick=()=>$('importFile').click();$('importFile').onchange=e=>{importFiles(e.target.files);e.target.value=''};
+function recencyShare(){return Number($('recencyWeight').value)/100}
+function shrunk(entry){
+ if(!entry)return null;
+ const min=Number($('minGames').value), rn=Number(entry.recent?.games||0),hn=Number(entry.history?.games_total||0);
+ const recentOk=rn>=min&&Number.isFinite(Number(entry.recent?.d2));
+ const historyOk=hn>=Math.max(500,min)&&Number.isFinite(Number(entry.history?.d2));
+ if(!recentOk&&!historyOk)return null;
+ // Dataset's 20-patch weighted values already contain the current patch: they are
+ // a correlated historical prior, not independent observations to concatenate.
+ const rv=recentOk?Number(entry.recent.d2)*rn/(rn+800):0;
+ const hv=historyOk?Number(entry.history.d2)*hn/(hn+3000):0;
+ let delta,share,label;
+ if(recentOk&&historyOk){share=recencyShare();delta=share*rv+(1-share)*hv;label=prettyPatch()+' + history';}
+ else if(recentOk){share=1;delta=rv;label=prettyPatch()+' only';}
+ else{share=0;delta=hv*0.50;label='Historical only (discounted)';}
+ return {delta,raw:recentOk?Number(entry.recent.d2):Number(entry.history.d2),games:recentOk?rn:hn,recentGames:rn,historyGames:hn,recentShare:share,label};
+}
+function rolePopularity(role,opp){
+ const tier=currentData[role]?.tierlist?.[opp]||historicalData[role]?.tierlist?.[opp];
+ return tier && Number.isFinite(Number(tier.pr)) ? Number(tier.pr) : null;
+}
+function blind(chid,d,unknownRoles=LANE_OPP_ROLES(lane)){
+ let sum=0,weight=0,covered=0;
+ for(const role of unknownRoles){
+  const roleOpp=d.matchups?.[chid]?.[role]||{};
+  for(const [opp,entry] of Object.entries(roleOpp)){
+   const val=shrunk(entry);if(!val)continue;
+   const pr=rolePopularity(role,opp);
+   if(pr!=null && pr<0.35)continue;
+   // If the other role's pick-rate file was not imported, weight known matchups
+   // equally rather than pretending they have a known pick rate.
+   const w=pr==null?1:pr;
+   sum+=Math.min(0,val.delta)*w;weight+=w;covered++;
+  }
+ }
+ return {loss:weight?sum/weight:0,covered,unknownRoles:[...unknownRoles]};
+}
+function rankChamp([name,id],d,known,isBlind,lcw,comfortW){
+ const s=settings(),overall=d.tierlist?.[id];
+ const base=Number((overall?.wrRecent!=null&&overall?.wrHistoric!=null)?(recencyShare()*overall.wrRecent+(1-recencyShare())*overall.wrHistoric):(overall?.wrRecent??overall?.wrHistoric??50));
+ const direct=LANE_OPP_ROLES(lane),unknownRoles=isBlind?direct:direct.filter(r=>!s.enemies[r]);
+ const b=blind(id,d,unknownRoles),directKnown=known.filter(([role])=>direct.includes(role)),otherKnown=known.filter(([role])=>!direct.includes(role));
+ const directShare=directKnown.length?(otherKnown.length?lcw:1):0;
+ let matchSum=0,matchWeight=0,detail=[];
+ for(const [role,opp] of known){
+  const entry=d.matchups?.[id]?.[role]?.[opp],v=shrunk(entry);
+  const w=direct.includes(role)?directShare/Math.max(1,directKnown.length):(1-directShare)/Math.max(1,otherKnown.length);
+  if(v){matchSum+=v.delta*w;matchWeight+=w}
+  detail.push({role,opp,v});
+ }
+ const delta=matchWeight?matchSum/matchWeight:0;
+ const hasOverall=overall?.wrRecent!=null||overall?.wrHistoric!=null;
+ const comfort=s.comfort[id]??3,comfortAdjust=(comfort-3)*comfortW,wrAdjust=(base-50)*0.40;
+ const reveal=laneRevealed(s.enemies||{},lane),blindFactor=isBlind?1:(1-reveal);
+ const blindAdjust=b.loss*0.7;
+ const matchupAdjust=known.length&&!isBlind?delta:0;
+ const matchCount=detail.filter(a=>a.v).length;
+ // Don't turn an unobserved off-role champion into a fictitious 50-point contender.
+ const score=hasOverall||matchCount?50+wrAdjust+comfortAdjust+blindAdjust+matchupAdjust:null;
+ return {name,id,base,hasOverall,b,comfort,comfortAdjust,wrAdjust,blindAdjust,blindFactor,matchupAdjust,score,detail,known:matchWeight>0,matchCount,matchTotal:detail.length};
+}
+function renderResults(){const d=data[lane];if(!d){$('dataInfo').textContent='No imported matchup data loaded';const s=settings();const active=POOLS[lane].filter(([,id])=>!s.disabled[id]).map(([name,id])=>({name,id,c:s.comfort[id]??3})).sort((a,b)=>b.c-a.c);$('results').innerHTML='<div class="help warn" style="margin-bottom:12px">OFFLINE MODE — ranked by your stated comfort ONLY. Import the most recent patch file for this role, plus optional 20-patch history, for statistical rankings.</div>'+active.map((x,i)=>`<div class="rank" style="grid-template-columns:30px 42px 1fr 90px"><span class="num">${i+1}</span>${portrait(x.name,"rankicon")}<button type="button" class="rankname choose-guide" data-analyze="${esc(x.id)}">${esc(x.name)} ↗</button><span style="text-align:right">Comfort ${x.c}/5</span></div>`).join('');return}
+const s=settings(),known=ROLES.filter(([r])=>s.enemies[r]).map(([r])=>[r,s.enemies[r]]),isBlind=$('blindOnly').checked,lcw=Number($('laneWeight').value)/100,comfortW=Number($('comfortWeight').value);
+const candidates=POOLS[lane].filter(([,id])=>!s.disabled[id]).map(p=>rankChamp(p,d,known,isBlind,lcw,comfortW)).sort((a,b)=>(a.score==null)-(b.score==null)||(b.score??-1)-(a.score??-1));
+const date=d.scraped_at?new Date(d.scraped_at).toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'}):'Unknown date';
+const mode=d.hasRecent&&d.hasHistory?`${Math.round(recencyShare()*100)}% ${prettyPatch()} / ${Math.round((1-recencyShare())*100)}% weighted history`:d.hasRecent?'100% '+prettyPatch()+' (no history loaded)':'Historical only · NOT CURRENT PATCH';
+$('dataInfo').textContent=`${mode} · recent snapshot ${d.hasRecent?date:'unavailable'}`;
+if(!candidates.length){$('results').innerHTML='<div class="empty">No eligible champions in this lane. Add a champion or uncheck Out to see recommendations.</div>';return}
+const best=candidates.find(c=>c.score!=null);
+if(!best){$('results').innerHTML=`<div class="help warn">No reliable lane statistics for the selected pool at the current minimum sample threshold. These picks remain available in Matchup Guide, but no Draft Index is calculated.</div>`+candidates.map(c=>`<div class="rank"><div class="num">—</div>${portrait(c.name,'rankicon')}<button type="button" class="rankname choose-guide" data-analyze="${esc(c.id)}">${esc(c.name)} ↗</button><span class="sub">Unrated</span><span class="risk neutral">—</span></div>`).join('');return}
+const knownMode=known.length&&!isBlind,blindRiskApplies=isBlind||laneRevealed(s.enemies||{},lane)<1;const why=knownMode?`${best.matchCount} of ${known.length} known enemy matchup signals available · ${best.matchCount===0?'No reliable matchup-specific signal':best.matchupAdjust>=0?'Favorable':'Unfavorable'} combined matchup effect ${fmt(best.matchupAdjust)} points`:blindRiskApplies?`Blind-pick risk ${fmt(best.blindAdjust)} score adjustment across ${best.b.covered} sampled lane matchups`:`Lane opponent revealed — blind-pick penalty excluded`;
+let html=`<div class="best">${portrait(best.name)}<div><div class="sub">#1 ${blindRiskApplies?'PARTIAL / BLIND':'LANE REVEALED'}</div><strong>${esc(best.name)}</strong><div class="why">${why}</div></div></div><div class="help" style="margin-bottom:12px">Ranked by <b>Draft Index</b> (higher is better, not win %). <b>${blindRiskApplies?'One or more direct lane opponents unknown · blind risk active':'Direct opponent(s) revealed · no blind risk'}</b>. Small score differences may not be meaningful.</div><div class="rank" style="border-top:0;padding-top:2px"><div></div><div></div><div class="sub">CHAMPION</div><div class="sub" style="text-align:right">DRAFT INDEX</div>${blindRiskApplies?`<div class="sub" style="text-align:right">BLIND RISK</div>`:`<div class="sub" style="text-align:right">LANE REVEALED</div>`}</div>`;
+for(let i=0;i<candidates.length;i++){const c=candidates[i],scored=candidates.filter(x=>x.score!=null).map(x=>x.score),lo=Math.min(...scored),hi=Math.max(...scored);const width=c.score==null?0:hi===lo?70:Math.max(9,15+85*(c.score-lo)/(hi-lo));html+=`<div class="rank"><div class="num">${i+1}</div>${portrait(c.name,"rankicon")}<div><button type="button" class="rankname choose-guide" data-analyze="${esc(c.id)}" title="Open ${esc(c.name)} matchup guide">${esc(c.name)} ↗</button><div class="sub">${c.hasOverall?c.base.toFixed(2)+'% overall WR':c.score==null?'Unrated · no observed lane performance':'Overall WR unavailable'} · Comfort ${c.comfort}/5</div><div class="bar"><div style="width:${width}%"></div></div></div><div class="score">${c.score!=null?c.score.toFixed(2):'—'}</div>${blindRiskApplies?`<div class="risk ${c.b.loss<-1?'negative':'neutral'}">${c.score==null?'—':fmt(c.blindAdjust)}<div class="sub">index pts</div></div>`:`<div class="risk neutral">—</div>`}</div><div class="details">${c.score==null?'<div class="help">No sufficiently sampled performance data for this champion in this role. The guide is available, but a statistical score would be misleading.</div>':`<div class="split"><span>Overall win-rate adjustment</span><b class="right">${fmt(c.wrAdjust)}</b></div>${blindRiskApplies?`<div class="split"><span>Blind-pick downside adjustment</span><b class="right">${fmt(c.blindAdjust)}</b></div>`:""}<div class="split"><span>Your comfort adjustment</span><b class="right">${fmt(c.comfortAdjust)}</b></div>${c.teamFit!=null&&$('teamFitToggle').checked?`<div class="split"><span>Allied draft fit (heuristic)</span><b class="right">${fmt(c.teamFit)}</b></div>`:""}${knownMode?`<div class="split"><span>Enemy draft matchup adjustment</span><b class="right">${fmt(c.matchupAdjust)}</b></div>`:''}${knownMode?c.detail.map(x=>`<div class="split"><span>vs ${esc(nameFor(x.opp))} · ${x.role==='middle'?'mid':x.role}</span><span class="right ${x.v?(x.v.delta>=0?'positive':'negative'):'neutral'}">${x.v?`${fmt(x.v.delta)} Δ2 · ${nf(x.v.games)} ${esc(x.v.label)} games`:'Insufficient data'}</span></div>`).join(''):blindRiskApplies?`<div class="split"><span>Blind safety coverage</span><span>${c.b.covered} lane matchups</span></div>`:""}`}</div>`}
+html+=`<div class="explain">Source freshness: recent snapshot generated ${esc(date)}. WR is a recency-biased blend of lane win rates when both datasets are present, not their win rate against the selected opponent. Δ2 is matchup win-rate advantage after normalization; the Draft Index is a heuristic, not a calibrated win probability.</div>`;$('results').innerHTML=html}
+// Independent matchup visualization computed exclusively from the user-imported LoL Pool Coverage dataset.
+// This is NOT a Machine LoLing data import or a reproduction of its proprietary scores.
+function renderThreatMap(){
+ const root=$('threatMap'); if(!root)return;
+ const d=data[lane];
+ if(!d){root.innerHTML='<div class="empty">Import this role’s recent-patch and/or historical JSON files to see opposing champion comparisons. No matchup values are shown without evidence.</div>';return}
+ const active=POOLS[lane].filter(([,id])=>!settings().disabled[id]);
+ if(!active.length){root.innerHTML='<div class="empty">Add or enable at least one champion in your pool.</div>';return}
+ const cap=Number($('threatCount').value)||15, onlyGaps=$('onlyGaps').checked;
+ const threatRole=PARTNER_ROLE[lane]?($('threatRole')?.value||lane):lane;
+ const observed=new Map();
+ for(const [,id] of active)for(const [opp,entry] of Object.entries(d.matchups?.[id]?.[threatRole]||{})){
+  const games=Number(entry?.recent?.games||0)+Number(entry?.history?.games_total||0)/20;
+  observed.set(opp,(observed.get(opp)||0)+games);
+ }
+ const opponentTier=data[threatRole]?.tierlist||{};
+ const opponents=[...observed].filter(([id,n])=>n>0&&!active.some(x=>x[1]===id)).map(([id,n])=>[id,{pr:Number(opponentTier[id]?.pr||0),observed:n}])
+  .sort((a,b)=>a[1].pr&&b[1].pr?b[1].pr-a[1].pr:b[1].observed-a[1].observed).slice(0,Math.max(cap*4,90));
+ let rows=[];
+ for(const [opp,stats] of opponents){
+   const cells=active.map(([name,id])=>{const entry=d.matchups?.[id]?.[threatRole]?.[opp];const val=shrunk(entry);return {name,id,val}});
+   const available=cells.filter(x=>x.val);
+   if(!available.length)continue;
+   const best=available.slice().sort((a,b)=>b.val.delta-a.val.delta)[0];
+   const gap=available.length===active.length && best.val.delta < 0;
+   if(onlyGaps&&!gap)continue;
+   rows.push({opp,pickRate:Number(stats.pr),observed:Number(stats.observed),cells,best,gap,uncertain:available.length<active.length});
+   if(rows.length>=cap)break;
+ }
+ if(!rows.length){root.innerHTML='<div class="empty">No opponents meet these filters with enough matchup samples. Try lowering the minimum games threshold or disabling the gaps-only filter.</div>';return}
+ const headers=active.map(([name])=>`<th>${esc(name)}</th>`).join('');
+ const lines=rows.map(r=>`<tr><td><b>${esc(nameFor(r.opp))}</b><div class="sub">${r.pickRate>0?'PR '+r.pickRate.toFixed(2)+'%':'Observed in '+nf(r.observed)+' combined matchup games'} · ${r.gap?'All measured picks negative':r.uncertain?'Partial evidence':'Answer exists'}</div></td>${r.cells.map(c=>{if(!c.val)return '<td class="missing" title="Below the selected sample threshold">—</td>';const v=c.val.delta;const color=v>0.5?'win':v< -0.5?'lose':'even';return `<td class="${color}" title="${nf(c.val.games)} games · raw delta ${fmt(c.val.raw)} percentage points">${fmt(v)}</td>`}).join('')}<td>${esc(r.best.name)} <span class="${r.best.val.delta>=0?'positive':'negative'}">${fmt(r.best.val.delta)}</span></td></tr>`).join('');
+ const gaps=rows.filter(x=>x.gap);
+ root.innerHTML=`<div class="help" style="margin-bottom:10px">Your champion pool versus commonly picked <b>${ROLE_NAMES[threatRole]}</b> opponents. Every colored value is the sample-shrunk matchup advantage (percentage points), not the champion's overall win rate. Green favors your pick; red disfavors it. — means too few games. PR is the opponent's own-role pick rate when that role's dataset is loaded; otherwise opponents are ordered by observed matchup coverage.</div><div class="threat-grid"><table class="threat-table"><thead><tr><th>Enemy laner</th>${headers}<th>Best measured pick</th></tr></thead><tbody>${lines}</tbody></table></div><div class="tagrow"><span class="threat-tag"><b>${gaps.length}</b> fully measured unfavorable opponents shown</span><span class="threat-tag"><b>${rows.length}</b> opponents examined</span><span class="threat-tag">Threshold <b>${nf($('minGames').value)}</b> games</span></div><p class="help">A “gap” is shown only if all enabled champions have enough samples and each measured matchup is negative; missing matchups never count as losses. The numbers come from the recent-patch-first blend of your verified datasets, not Machine LoLing. This is a scouting aid, not a ban recommendation or a guaranteed win probability.</p>`;
+}
+function renderThreatRoleSelect(){
+ const el=$('threatRole');if(!el)return;
+ const opt=LANE_OPP_ROLES(lane);
+ el.innerHTML=opt.map(r=>`<option value="${r}">Enemy ${ROLE_NAMES[r]}</option>`).join('');
+ el.disabled=opt.length<2;
+}
+$('threatRole').onchange=renderThreatMap;
+$('recencyWeight').oninput=()=>{$('recencyWeightLabel').textContent=`${$('recencyWeight').value}% recent / ${100-Number($('recencyWeight').value)}% history`;store.recencyWeight=Number($('recencyWeight').value);save();renderResults()};
+$('threatCount').onchange=renderThreatMap;
+$('onlyGaps').onchange=renderThreatMap;
+const previousRenderResults=renderResults;
+renderResults=function(){previousRenderResults();renderThreatMap()};
+if(Number.isFinite(Number(store.recencyWeight))&&Number(store.recencyWeight)>=60&&Number(store.recencyWeight)<=100){$('recencyWeight').value=store.recencyWeight;$('recencyWeightLabel').textContent=`${store.recencyWeight}% recent / ${100-store.recencyWeight}% history`;}
+document.querySelectorAll('#laneTabs [data-lane]').forEach(btn=>btn.addEventListener('click',()=>{lane=btn.dataset.lane;store.activeLane=lane;save();renderControls();renderResults();ensureRole(lane)}));$('clear').onclick=()=>{settings().enemies={};save();renderControls();renderResults()};$('clearAllies').onclick=()=>{settings().allies={};save();renderControls();renderResults()};$('refresh').onclick=()=>checkForUpdates(true);for(const id of ['laneWeight','comfortWeight','minGames','blindOnly']){$(id).addEventListener('input',()=>{store.controls={laneWeight:$('laneWeight').value,comfortWeight:$('comfortWeight').value,minGames:$('minGames').value,blindOnly:$('blindOnly').checked};save();$('laneWeightLabel').textContent=$('laneWeight').value+'%';$('comfortWeightLabel').textContent=$('comfortWeight').value;renderResults()})}if(store.controls){for(const key of ['laneWeight','comfortWeight','minGames'])if(store.controls[key]!=null)$(key).value=store.controls[key];$('blindOnly').checked=!!store.controls.blindOnly}$('laneWeightLabel').textContent=$('laneWeight').value+'%';$('comfortWeightLabel').textContent=$('comfortWeight').value;renderControls();checkForUpdates(false);
+
+// Matchup Analyzer v11: explainable, offline, draft-aware strategic guidance.
+const ANALYZER_ROLE_LABEL={top:'Top',jungle:'Jungle',middle:'Mid',bottom:'Bot',support:'Support'};
+const TRAIT_GROUPS={
+ frontline:'Malphite Ornn Sion Maokai Sejuani Zac Rammus Amumu Alistar Braum Leona Nautilus Rell Poppy Shen Galio Gragas TahmKench Skarner Ksante KSante ChoGath DrMundo Sett Udyr Volibear',
+ engage:'Thresh Blitzcrank Pyke Malphite Ornn Sejuani Zac Amumu Alistar Leona Nautilus Rell Rakan JarvanIV Vi Hecarim Nocturne Wukong Diana Lissandra Galio Annie Fiddlesticks Kennen Rumble Qiyana',
+ peel:'Janna Lulu Milio Nami Soraka Sona Braum Taric Renata Ivern Karma Morgana Thresh Zilean Poppy TahmKench Shen Galio',
+ ap:'Ahri Akali Anivia Annie AurelionSol Aurora Azir Brand Cassiopeia Diana Ekko Elise Evelynn Fiddlesticks Fizz Galio Gragas Gwen Heimerdinger Hwei Ivern Karthus Kassadin Katarina Kennen Lillia Lissandra Lux Malzahar Mel Mordekaiser Morgana Neeko Nidalee Orianna Rumble Ryze Seraphine Singed Swain Sylas Syndra Taliyah Teemo TwistedFate Veigar Velkoz Vex Viktor Vladimir Xerath Ziggs Zilean Zoe Zyra Amumu Maokai Nunu',
+ ad:'Aatrox Akshan Aphelios Ashe Belveth Briar Caitlyn Camille Corki Darius Draven Fiora Gangplank Garen Gnar Graves Hecarim Illaoi Irelia Jax Jayce Jhin Jinx Kaisa Kalista Kayn Khazix Kindred Kled KogMaw LeeSin Lucian MasterYi MissFortune Naafiri Nilah Nocturne Olaf Pantheon Pyke Qiyana Quinn RekSai Renekton Rengar Riven Samira Senna Sett Shaco Sivir Smolder Talon Tristana Trundle Tryndamere Twitch Urgot Varus Vayne Viego Wukong Xayah XinZhao Yasuo Yone Yorick Yunara Zed Zeri',
+ poke:'Jayce Xerath Ziggs Lux Hwei Velkoz Varus Ezreal Caitlyn Jayce Zoe Nidalee Karma Jayce Corki Jayce Taliyah Brand Ashe Gangplank Teemo',
+ dive:'Akali Fizz Qiyana Yasuo Yone Irelia Camille Fiora Riven Hecarim Vi Nocturne JarvanIV Wukong Diana Ekko Fiddlesticks Katarina Zed Talon KhaZix Khazix Rengar Naafiri Viego Briar',
+ split:'Fiora Jax Camille Tryndamere Yorick Nasus Gwen Trundle Illaoi Irelia Garen Darius Olaf Riven Kayle Yone',
+ scale:'Kayle Kassadin AurelionSol Veigar Nasus Smolder Jinx KogMaw Vayne Zeri Aphelios Twitch Vladimir Azir Senna Gangplank Yasuo Yone Sona Seraphine Yuumi',
+ early:'Darius Olaf Draven Renekton Pantheon LeeSin Elise RekSai Nidalee Kalista Lucian Qiyana Talon Rumble Jayce',
+ waveclear:'Anivia Azir Hwei Ziggs Viktor Orianna Taliyah Malzahar Ryze Sivir Seraphine Gangplank Rumble AurelionSol Tristana Xayah',
+ pick:'Ahri Ashe Blitzcrank Nautilus Thresh Morgana Lux Pyke Elise Nidalee Zoe Neeko Lissandra Skarner Vi',
+ disengage:'Janna Gragas Poppy Braum Milio Lulu Alistar Taliyah Trundle',
+ heal:'Soraka Sona Yuumi Nami Milio Seraphine Ivern Taric',
+ tank:'Malphite Ornn Sion Maokai Sejuani Zac Rammus Amumu Alistar Braum Leona Nautilus Rell TahmKench Skarner ChoGath DrMundo',
+ ranged:'Ahri Akshan Anivia Annie Aphelios Ashe AurelionSol Aurora Azir Bard Brand Caitlyn Cassiopeia Corki Draven Ezreal Gnar Graves Heimerdinger Hwei Janna Jayce Jhin Jinx Kaisa Kalista Karma Karthus Kayle Kennen Kindred KogMaw LeBlanc Lucian Lulu Lux Mel Milio MissFortune Morgana Nami Neeko Nidalee Orianna Quinn Renata Ryze Samira Senna Seraphine Sivir Smolder Sona Soraka Swain Syndra Taliyah Teemo Tristana Twitch TwistedFate Varus Vayne Veigar Velkoz Vex Viktor Vladimir Xayah Xerath Yunara Yuumi Zeri Ziggs Zilean Zoe Zyra'
+};
+const TRAITS=Object.fromEntries(Object.entries(TRAIT_GROUPS).map(([k,v])=>[k,new Set(v.split(/\s+/).filter(Boolean))]));
+function champKey(id){const n=nameFor(id);let key=Object.entries(FALLBACK).find(([,v])=>String(v)===String(id))?.[0]||n.replace(/[^A-Za-z0-9]/g,'');return key;}
+function hasTrait(id,tag){return Boolean(id)&&TRAITS[tag]?.has(champKey(id))||false}
+function teamTrait(ids,tag){return ids.filter(id=>hasTrait(id,tag)).length}
+const CORE_PLANS={
+ Darius:{identity:'Lane bully and reset-based front-to-back fighter',trade:'Keep your passive stacks as the deciding factor. Start trades when you can maintain contact, land the outer edge of Q, and threaten the all-in. Do not burn your pull just to poke a target that can easily kite away.',wave:'Against melee opponents, slow-push from a healthy wave to create a crash and ward timing; avoid perma-pushing without knowing jungle location. Freeze closer to your turret when the opponent must step forward for last hits.',spike:'Leverage early extended trades and level-six execute pressure. Respect champions who can disengage before your passive stacks or punish your Q sweet spot.',mid:'Hold side-lane pressure when your teleport or rotation timing supports the next objective; otherwise move to skirmishes where a first kill can trigger resets.',late:'Play behind or beside your frontline until an accessible target lets you stack passive. Do not chase through heavy peel into the backline; reset access matters more than an optimistic flank.',avoid:'Opening a fight into layered crowd control before you have a target you can actually finish.'},
+ Irelia:{identity:'Wave-assisted skirmisher and high-commitment diver',trade:'Prepare low-health minions to reposition with Q. Enter with passive stacks or a reliable stun setup; use minions to retreat when the opponent still has key cooldowns. Avoid engaging without a reset path.',wave:'Keep a usable enemy minion wave available for mobility; control bounce timings rather than clearing every wave instantly. Fight near stacked passive opportunities, not in empty lanes against durable duelists.',spike:'Look for level-two/three opportunities with passive stacks and punish missed control spells. Do not assume an even-stat all-in is winning without the wave.',mid:'Pressure isolated sidelanes after major cooldowns are tracked, then enter river fights from flanks with vision rather than directly through the frontline.',late:'Wait for allied engage or enemy peel to be spent. Use resets to reach carries; if you cannot access them safely, guard your own carry against divers.',avoid:'Taking a fight in a barren wave when your dashes and escape routes disappear.'},
+ Malphite:{identity:'Armor-stacking frontline and high-impact initiation',trade:'Favor short, economical Q trades when mana permits; avoid extended fights into sustained damage. Trade around Grasp or shield windows when appropriate, and preserve health for an ultimate-enabled threat.',wave:'Let difficult matchups push toward you and collect safe CS; when a neutral wave is secure, crash it before leaving vision to roam. Do not lose multiple waves gambling on low-probability poke.',spike:'Level six creates kill or roam angles. Coordinate ultimate with allied burst, especially when the opponent lacks flash.',mid:'Be first into dragon or herald setups with your team. Threatening ultimate around narrow corridors can be stronger than forcing an isolated side-lane duel.',late:'Identify the enemy carry whose removal wins the fight, but do not engage alone. Sometimes saving ultimate to interrupt enemy divers is more valuable than a long-range start.',avoid:'Using ultimate on a low-value target while the enemy primary carry is protected and able to free-hit.'},
+ Olaf:{identity:'Early sustained-duel pressure and anti-CC melee threat',trade:'Repeated axe pickups and long trades are your advantage when the lane is long enough. Manage health and wave position before chasing; an enemy who kites outside axe range can deny your win condition.',wave:'Use early wave control to create a level lead and river access, but ward before extending. Hold a freeze if a weaker opponent needs to walk into axe range.',spike:'Exploit first-item and early objective skirmishes; your ultimate helps bypass control but does not make you immune to raw burst or terrain constraints.',mid:'Force fights around side-lane pressure or short rotations; contest objectives early with allies instead of waiting until opposing carries outscale your access.',late:'Find angles that reach a high-value carry quickly; if the enemy comp can kite indefinitely, threaten flanks and play around ally engage instead of running through five players.',avoid:'Overcommitting into ranged peel without a path to maintain contact.'},
+ Rumble:{identity:'Magic-damage lane pressure and terrain-based teamfight control',trade:'Manage heat deliberately: use Flamespitter to control space and trade when enemy disengage is down, but avoid overheating before an important escape or follow-up spell.',wave:'Create controlled pushes to secure vision around river objectives, then use your wave priority to arrive first. A pushed lane without river information invites ganks.',spike:'Early ultimate fights at jungle entrances and objectives are major opportunities. Coordinate Equalizer placement with allied crowd control rather than relying on opponents standing still.',mid:'Arrive ahead of neutral objectives and fight in corridors. Your ultimate can split the opposing team even when it does not immediately kill anyone.',late:'Treat ultimate as a zone-control tool that forces carries out of favorable positions. Preserve spacing against long-range threats and flankers.',avoid:'Placing your ultimate after allies have already spent their control and the enemy has a clear escape path.'},
+ Akali:{identity:'Energy-based assassin with flexible flank access',trade:'Use passive-ring spacing and short trades rather than forcing a full commit into an opponent with all defensive cooldowns available. Shroud buys time but does not remove reveal, area damage, or terrain risks.',wave:'Concede some early priority into strong ranged shove rather than losing health for CS. Preserve a wave you can collect after a roam and avoid roaming without a realistic lane reset.',spike:'Level six and core items improve assassination access. Track exhaust, stasis, and peel before committing your second dash.',mid:'Play fog-of-war side angles, then join skirmishes once targets have separated. Draw cooldowns without having to kill on the first entry.',late:'Flank around vision and wait for enemy CC to be spent. When the backline is inaccessible, force displacement and live to re-enter instead of trading yourself for a low-value target.',avoid:'Entering a five-man group through the front before defensive spells are committed.'},
+ Fizz:{identity:'Mobile burst assassin with cooldown-centered trades',trade:'Use your E deliberately: it is both damage and your main defensive escape. Look for short favorable trades after enemy control or escape spells are used, not while their wave is too large.',wave:'Respect ranged push early. Thin waves, preserve HP, and crash before roaming; losing two waves for an unconfirmed bot play is often a losing trade.',spike:'Level six gives high-threat pick angles when the enemy is missing mobility or spell shields. Look for isolated targets and make opponents respect shark range.',mid:'Control side-lane vision and join fights from fog. Prioritize carries without stasis or reliable peel.',late:'Wait out defensive cooldowns and avoid using E to enter if you will need it to escape. Threaten zoned carries during objective setups.',avoid:'Burning E to clear the wave immediately before the enemy jungler arrives.'},
+ Qiyana:{identity:'Terrain-dependent AD assassin and river-fight controller',trade:'Cycle elements around the available terrain. Use grass to manipulate retaliation, water to set up control, and rock to finish lowered-health targets. Seek short trades until the execution window is real.',wave:'Track your side of river and terrain access. Crash on a real roam timer, then move through covered fog rather than face-checking wards.',spike:'Early skirmishes near river or jungle walls and level-six terrain ultimates are your most threatening setups. Your strongest fights occur where terrain amplifies your abilities.',mid:'Play around objective entrances, wall positions, and vision denial. Help your team catch opponents entering narrow corridors.',late:'Reserve ultimate for multi-target terrain interactions or a high-value carry. Do not engage on open terrain with no follow-up or escape route.',avoid:'Taking an open-field fight with poor element access while enemy peel remains up.'},
+ Taliyah:{identity:'Control mage with terrain denial and proactive map movement',trade:'Maintain safe range for worked-ground Q patterns; use E to punish dashes and W to displace enemies into hazards. Favor controlled chip over standing close enough for a melee all-in.',wave:'Build shove windows only when you can safely position to influence river; do not autopush into a jungle threat without information.',spike:'Level-six wall offers map impact but only when the destination is favorable. Prioritize guaranteed waves over low-information roams.',mid:'Use wall to cut off rotations or separate fights, and E to deny dash-heavy entries. Fight with your team where your zone control matters.',late:'Protect carries with E and W and use wall to block an approach, not to trap your allies in an unwinnable fight.',avoid:'Using wall to split yourself away from teammates or give the enemy frontline isolated access.'},
+ Yasuo:{identity:'High-mobility AD skirmisher with projectile denial and knock-up follow-up',trade:'Stack Q safely and trade on your shield cycle. Wind Wall denies important projectiles but does not stop non-projectile crowd control; use minions as routes in and out rather than always dashing forward.',wave:'Control minion positioning to retain mobility. Avoid auto-shoving into gank lanes; preserve a defensive dash path and ward before creating a long lane.',spike:'Level-six knock-up setups, crit purchases, and ally airborne control can create decisive skirmishes. Do not force ultimate into five opponents without a follow-up plan.',mid:'Take side waves when safe and join fights near allied knock-up champions. Wind Wall can win an objective fight by denying a key ranged threat.',late:'Play patiently for allied crowd control, defend priority carries from projectiles, and use ultimate only when you can survive the landing.',avoid:'Dashing into the backline with no minions, knock-up follow-up, or escape after your ultimate.'}
+};
+function guideFor(id){return CORE_PLANS[champKey(id)]||null}
+function roleContext(role,id){
+ const name=nameFor(id);
+ if(role==='jungle')return `${name}: ${hasTrait(id,'early')||hasTrait(id,'engage')?'Expect early contest or proactive gank windows; coordinate wave state and river vision with this jungler.':hasTrait(id,'scale')?'Prioritize protecting farm and securing defensive vision early; coordinate a later objective power spike.':'Coordinate crash-and-rotate windows and objective access with this jungler.'}`;
+ if(role==='support')return `${name}: ${hasTrait(id,'engage')?'Engage support — track their roam availability and aim to layer crowd control.':hasTrait(id,'peel')?'Peel-oriented support — protect your carries, and let their defensive tools improve your second engage.':'Respect their lane priority and rotation windows; coordinate river vision.'}`;
+ if(role==='bottom')return `${name}: ${hasTrait(id,'scale')?'Scaling bot threat — avoid trading early map pressure for low-percentage fights; buy them time to become a main win condition.':hasTrait(id,'early')?'Early pressure bot — favor skirmishes and dragon setups while they have tempo.':'Track the bot wave before calling a dragon fight; their arrival timing matters.'}`;
+ return `${name}: ${hasTrait(id,'split')?'Can apply side-lane pressure. Coordinate opposing-side objectives and avoid overlapping side waves.':hasTrait(id,'engage')?'Provides engage opportunities; coordinate when to layer follow-up.':hasTrait(id,'waveclear')?'Can stabilize waves and rotate for objectives.':'Track their wave priority and teleport or rotation availability.'}`;
+}
+function enemyConcern(role,id){
+ const name=nameFor(id);
+ const type=hasTrait(id,'dive')?'dive/flank':hasTrait(id,'pick')?'pick/catch':hasTrait(id,'poke')?'long-range poke':hasTrait(id,'engage')?'engage':hasTrait(id,'scale')?'late-game scaling':hasTrait(id,'split')?'side-lane pressure':'general matchup';
+ const response=hasTrait(id,'dive')?'Keep flank wards and defensive cooldowns for their entry.':hasTrait(id,'pick')?'Avoid isolated face-checks; enter fog with teammates.':hasTrait(id,'poke')?'Control approach routes and avoid taking free damage before objectives.':hasTrait(id,'engage')?'Track the initiation cooldown and preserve spacing.':hasTrait(id,'scale')?'Convert safe early tempo into vision and objectives before their strongest item spikes.':hasTrait(id,'split')?'Plan who answers their side-lane push before committing to an objective.':'Track their power spikes and position according to available information.';
+ return {name,type,response,role};
+}
+function getAnalyzerPick(){const s=settings();const pool=POOLS[lane];const ids=pool.filter(([,id])=>!s.disabled[id]).map(([,id])=>id);if(s.analyzerPick&&ids.includes(String(s.analyzerPick)))return String(s.analyzerPick);return ids[0]||''}
+function renderAnalyzerControls(){
+ const s=settings();s.allies||={};
+ const champOptions=POOLS[lane].filter(([,id])=>!s.disabled[id]).map(([name,id])=>`<option value="${esc(id)}" ${getAnalyzerPick()===id?'selected':''}>${esc(name)}</option>`).join('');
+ $('analyzerPick').innerHTML=`<label for="analyzerPickSelect">Your selected champion</label><select id="analyzerPickSelect"><option value="">Choose a pool champion</option>${champOptions}</select>`;
+ $('allies').innerHTML=ROLES.map(([r,n])=>r===lane?`<div class="role-row primary"><label>${n} ★</label>${comboMarkup('self-'+r,n,getAnalyzerPick())}</div>`:`<div class="role-row"><label>${n}</label>${comboMarkup('ally-'+r,n,s.allies[r]||'')}</div>`).join('');
+ $('analyzerPickSelect').addEventListener('change',e=>{s.analyzerPick=e.target.value;save();renderAnalyzer()});
+}
+
+// V11 curated interactions: sources inform examples, not borrowed proprietary scoring.
+const RESEARCH_LINKS={
+ fizz:'https://www.reddit.com/r/fizzmains/comments/1uhwujk/informative_challenger_guide_fizz_matchup_tier/',
+ fizzChallenger:'https://www.onetricks.gg/guide/9xy9i7z/s9-s16-challenger-fizz-guide-all-matchups',
+ taliyahFizz:'https://www.reddit.com/r/TaliyahMains/comments/1xjjmu5/how_to_play_vs_a_fizz/',
+ qiyanaFizz:'https://www.reddit.com/r/QiyanaMains/comments/1vw1q8f/fizz_matchup_tips/',
+ akaliYasuo:'https://www.reddit.com/r/akalimains/comments/1tdzoes/is_akali_vs_yasuo_just_a_skill_matchup/',
+ yasuoFizz:'https://www.reddit.com/r/YasuoMains/comments/1t4frwk/desperately_need_advice_on_how_to_beat_fizz/',
+ olaf:'https://www.reddit.com/r/Olafmains/comments/1t774ln/do_u_guys_have_any_matchups_guide/',
+ rumble:'https://www.reddit.com/r/Rumblemains/comments/1vteox3/trying_to_learn_can_you_give_me_advice/',
+ darius:'https://www.reddit.com/r/Dariusmains/comments/1wzg2zk/new_to_darius_what_are_his_builds_and_matchups_i/',
+ irelia:'https://www.reddit.com/r/IreliaMains/comments/1d2a2yk',
+ malphite:'https://www.reddit.com/r/malphitemains/comments/18lldbq',
+ wave:'https://www.reddit.com/r/summonerschool/comments/qt2s1c/noob_needs_advice_managing_minion_waves/',
+ chippys:'https://www.reddit.com/r/topmains/comments/1tygtt0/coach_chippys_shilling_thread/'
+};
+// Enemy mechanic triggers: concrete spells and counterplay, not automatically inferred winrates.
+const ENEMY_MECHANICS={
+ Fizz:{spell:'E — Playful / Trickster',window:'His E is both invulnerability and mobility. After it is committed, there is a window to threaten a short trade or wave pressure; do not assume Q is unavailable.',failure:'Holding your main skillshot until his E is used is often stronger than opening with it.',wave:'Avoid following his roam through unwarded river; crash and ping if you cannot safely match.'},
+ Yasuo:{spell:'W — Wind Wall; Q3 tornado; passive shield',window:'Pop his passive shield before committing valuable burst. Track tornado and Wind Wall separately; punish after Wind Wall while keeping a dash path from the wave.',failure:'Do not spend a decisive projectile into Wind Wall; spacing outside the wave reduces his dash routes.',wave:'When he has many minions to dash through, fight from the side of the wave and avoid extending far from your turret.'},
+ Yone:{spell:'E — Soul Unbound; Q3; R',window:'Watch for stacked Q3 and his E return location. Punish after he is forced to snap back, rather than chasing his temporary position.',failure:'Do not bunch up on his Q3/R line or commit a large cooldown just as he can return.',wave:'Thin a large crashing wave before fighting through his E; identify his return spot before jungle engages.'},
+ Akali:{spell:'W — Twilight Shroud; E — Shuriken Flip',window:'Count the time in shroud and avoid committing targeted damage while she is untargetable; punish careless E use or a shroud cooldown.',failure:'Track her passive ring and energy; avoid standing inside her Q range for repeated free trades.',wave:'Crash into her tower when her waveclear and roam timing are constrained; never follow into unwarded fog.'},
+ Qiyana:{spell:'W — element change; Q grass/water/rock; R — terrain',window:'Respect water root and grass concealment. Pressure her when she has poor access to brush/river/wall elements or expends a key Q/W setup.',failure:'Never fight her beside an objective wall without a plan for her ultimate.',wave:'Ward side entrances and avoid being pinned between a wall and river brush.'},
+ Irelia:{spell:'Passive stacks; Q reset; E stun; W damage reduction',window:'Check nearby low-health minions before engaging: they are Q resets and potential escapes. Pressure when passive is unstacked and stun misses.',failure:'Do not leave multiple low-health minions as free dash targets while trading.',wave:'Keep a healthy wave on your side when she cannot freely Q through it; do not recklessly fight inside your own low-health wave.'},
+ Darius:{spell:'Outer Q heal; E pull; passive Hemorrhage stacks',window:'Step inside the outer Q blade if committed to fighting, or fully leave its range; punish missed E only if you can disengage from Ghost.',failure:'Avoid letting prolonged trades reach five passive stacks; his Q outer edge also heals him.',wave:'Do not stand in a long lane without a way to escape Ghost. Defensive freezes limit run-down distance.'},
+ Olaf:{spell:'Q axe pickup; R — Ragnarok; low-health attack speed',window:'Deny repeated axe pickups and kite him before committing. During R, hard CC is unreliable, so use terrain, distance and damage rather than expecting stuns.',failure:'Do not assume low health means weak damage; watch his true-damage E.',wave:'Give him less lane length for a chase, and avoid isolated riverside axe chains.'},
+ Rumble:{spell:'Heat, empowered spells, Q cone, E harpoons, R Equalizer',window:'Track heat before trading: overheated Rumble cannot cast spells briefly, but has empowered attacks. Contest after Q or harpoons miss when you can safely survive the melee threat.',failure:'Avoid fighting in his Q cone at high heat or on Equalizer terrain.',wave:'Do not contest a choke point through Equalizer; approach from a different angle.'},
+ Malphite:{spell:'Passive shield; E attack-speed slow; R Unstoppable Force',window:'Break his passive shield before your important trade. Account for E attack-speed slow in auto-heavy all-ins and respect R after level six.',failure:'Do not cluster carries in a straight-line ultimate angle.',wave:'For melee physical picks, short cooldown-aware trades may beat repeated auto attacks into armor.'},
+ Taliyah:{spell:'E Unraveled Earth punishes dashes; W knock; R wall',window:'Track E before dashing through her zone. Bait W or E first, then commit once the displacement/denial is down.',failure:'Do not dash across active E expecting it to be harmless.',wave:'When she pushes, protect side entrances; if she walls to roam, communicate and avoid a blind chase.'},
+ Veigar:{spell:'E Event Horizon cage',window:'Track cage. If it is down, approach with vision and spacing; while up, fight outside the ring or wait rather than dashing into stun.',failure:'Do not allow a cage to cut you off from your escape route.',wave:'Force responses to crashes before rotating, but respect his waveclear and scaling.'},
+ Syndra:{spell:'E Scatter the Weak stun',window:'Punish after E misses; avoid a straight-line approach through existing spheres.',failure:'Her pushback can interrupt an assassination attempt.',wave:'Protect health while farming early, then contest only on a favorable cooldown state.'},
+ Ahri:{spell:'E Charm; R Spirit Rush',window:'Charm is the key punish window: sidestep or bait it, then trade before it returns. Track ultimate dashes before spending a finishing cooldown.',failure:'Avoid linear all-ins into an unspent charm.',wave:'Crashing a wave before moving restricts her ability to follow for free.'},
+ Annie:{spell:'Passive stun; R Tibbers',window:'Watch her passive stacks and avoid face-checking when stun is ready. Commit when stun has just been spent on a wave.',failure:'Do not stack up for Flash-Tibbers.',wave:'Prioritize HP and wave security over risky close-range farming when stun is primed.'},
+ Vex:{spell:'Passive fear; anti-dash passive interaction',window:'Check fear readiness, not just Q cooldown. Once fear is spent, mobile champions have more freedom to trade.',failure:'Repeated dashes near Vex can feed her passive; respect R resets.',wave:'Manage side angles so her fear cannot catch the entire wave and you together.'},
+ Lissandra:{spell:'W root; R self/target lockdown',window:'Avoid all-inning while R is available unless you can survive the counter-engage or follow-up.',failure:'Her self-R can deny your finisher and start a counterfight.',wave:'Prefer wave priority and cross-map rotations over predictable solo dives.'},
+ Renekton:{spell:'Fury empowered W; E dash; R durability',window:'Track fury and whether the first E can reach you. Punish cooldowns after he uses dash to clear or misses his empowered trade.',failure:'Do not challenge an empowered W auto-trade without defensive preparation.',wave:'Avoid giving him a long lane to dash through your wave for a full combo.'},
+ Jax:{spell:'E Counter Strike',window:'Bait Counter Strike before committing auto-heavy DPS. Re-engage when E is down if your champion can avoid his Q follow-up.',failure:'Auto-attack reliance is heavily punished while his E is spinning.',wave:'Preserve an exit around his E stun; avoid standing on top of him when his passive is stacked.'},
+ Fiora:{spell:'W Riposte; vital angles; R four vitals',window:'Bait Riposte before hard CC or burst. Shift position to deny easy vital procs rather than standing still.',failure:'Do not throw a telegraphed stun into her W.',wave:'Keep enough space toward tower to disengage when her R begins.'},
+ Camille:{spell:'E Hookshot; Q2 true damage; R untargetability',window:'Watch wall access and hookshot cooldown. Back away from Q2 timing rather than taking the empowered strike for free.',failure:'Her R can avoid key spells; delay predictable burst when she can cast it.',wave:'Do not let her extend a trade next to a wall without jungle cover.'},
+ Aatrox:{spell:'Q sweet spots; W pull; E dash',window:'Sidestep Q outer sweet spots and break W before pull. Punish when E is used and his main Q sequence is unavailable.',failure:'Do not stand in front of consecutive Q edges expecting to sustain through all three.',wave:'Keep room to sidestep laterally rather than retreating along the Q line.'},
+ Mordekaiser:{spell:'E Death’s Grasp; isolated Q; R Death Realm',window:'Dodge E and avoid isolated Q. When R is available, position and itemize assuming you may have to survive the 1v1 without ally help.',failure:'Do not let an avoidable isolated Q + passive turn a short trade into a long fight.',wave:'Trade around a healthy wave and map knowledge, not an isolated extended chase.'},
+ Garen:{spell:'Q silence; W damage reduction; R execute',window:'Trade when Q and W are on cooldown; respect his R threshold as HP falls.',failure:'Do not burn all damage into W or assume a low-HP Garen cannot disengage via movement speed.',wave:'Stop his free sustain by using safe poke when possible, but do not overextend chasing it.'},
+ Sett:{spell:'E Facebreaker; W Haymaker center true damage',window:'Avoid getting pulled between two sides of minions; sidestep the center of W after his grit builds.',failure:'Do not finish a long trade standing in front of a fully charged W.',wave:'Keep lateral movement available and do not box yourself into a narrow path.'},
+ Jayce:{spell:'Ranged Q+E shock blast; hammer knockback',window:'Use minions and angles to block his ranged poke; he is punishable after switching to hammer for a short melee combo and disengage tools are spent.',failure:'Do not lose half your health before attempting your first all-in.',wave:'Preserve HP and experience against ranged harassment; use defensive brush and controlled bounce.'},
+ Gangplank:{spell:'E Powder Keg; W Remove Scurvy',window:'Contest barrel timing or stay outside chain range. His W can cleanse many crowd controls; avoid relying on one disable alone.',failure:'Do not chase through an established barrel chain.',wave:'Pressure barrels and control brush angles without sacrificing HP for every minion.'},
+ Teemo:{spell:'Q Blinding Dart; R mushrooms',window:'Bait blind before auto-reliant trades and watch where mushrooms are likely placed.',failure:'Blind can invalidate your burst during its duration.',wave:'Preserve health and sweep likely escape routes before chasing.'},
+ Poppy:{spell:'W Steadfast Presence stops dashes; E wall stun',window:'Bait W before committing dash-heavy combos and avoid fighting with a wall directly behind you.',failure:'Do not dash predictably into active W.',wave:'Fight away from terrain and keep minion paths for escape when possible.'},
+ Riven:{spell:'Q3 knockup; W stun; E shield',window:'Track Q sequence and shield cooldown. Her extended Q timing can disguise when she will commit.',failure:'Do not spend your only disengage before her Q3/W rotation.',wave:'Manage melee wave proximity and avoid giving free early trades from brushes.'},
+ LeBlanc:{spell:'W Distortion return; E chain',window:'Punish if W has been used and her return pad is predictable. Dodge chain rather than chasing her first dash blindly.',failure:'Do not follow her into fog; her safety and burst reset quickly.',wave:'Shove only with known jungle position; make her spend spells on waves when it is safe.'},
+ Viktor:{spell:'Q shield trade; W Gravity Field; E laser',window:'Avoid long trades inside Gravity Field. Force Q shield first where safe, then look for a shorter engage after defensive placement.',failure:'Do not line up with wave to give free laser poke.',wave:'Recognize his upgraded waveclear and choose sensible roam timers.'},
+ Orianna:{spell:'Q ball position; W zone; R Shockwave',window:'Track the ball rather than only Orianna. Approach from a side where she must reposition it before using W/R.',failure:'Do not enter a tight cluster under a positioned ball.',wave:'Keep wave health stable; avoid conceding every crash when your jungler is fighting river.'},
+ Xerath:{spell:'Q charge; E stun; W slow',window:'Sidestep charged Q and punish when E is unavailable. Approach on diagonals with vision.',failure:'Do not run straight at a full-range stun.',wave:'Trade a few CS for health early, then crash on real roam windows.'},
+ Hwei:{spell:'Multiple spell sets; control-zone follow-up',window:'Force out the control spell before entering melee range. Dodge large slow/zone coverage rather than straight-line charging.',failure:'His extensive range rewards standing away from your own wave when possible.',wave:'Avoid contesting his shove without vision; secure the wave and look for side-angle skirmishes.'},
+ Caitlyn:{spell:'W traps; E net; R execute',window:'Avoid known trap lines under tower and in choke points. Punish an expended E when you have a real engage path.',failure:'Do not walk into a trapped minion wave or eat free long-range autos to contest one minion.',wave:'She can establish early push. Keep health and wave manageable; avoid early forced fights through a stacked wave.'},
+ Jinx:{spell:'E Flame Chompers; passive Get Excited',window:'Track chompers before diving; deny her a reset by taking controlled exits instead of low-health chases.',failure:'Do not stack in a narrow approach when she has rocket splash and a protected front line.',wave:'Punish her immobility only with vision and ally follow-up; she can clear and farm safely if left alone.'},
+ Draven:{spell:'Q Spinning Axe landing; E Stand Aside',window:'Predict axe landing locations, but only punish if minion and support positioning make the step safe. Track his E interrupt.',failure:'Do not trade auto-for-auto into multiple active axes without a numbers or cooldown advantage.',wave:'Give ground if the first level-two race is clearly lost; preserve HP over a dangerous contest.'},
+ Jhin:{spell:'Fourth-shot reload; W root; R Curtain Call',window:'His reload creates a brief trade window if his support cannot punish. Be cautious standing behind marked allies when W is available.',failure:'Do not assume his fourth shot is a normal auto or approach his R channel in a straight line.',wave:'Set your own wave before he can use long-range W to coordinate jungle follow-up.'},
+ Ashe:{spell:'W Volley; R Enchanted Crystal Arrow; repeated slow',window:'Attack when Volley is spent and you have a path out of sustained slow; watch global ultimate opportunities.',failure:'A long lane plus repeated autos can make a short apparent win into a losing chase.',wave:'Keep vision against arrow-assisted ganks and avoid being pinned to the far side of lane.'},
+ Ezreal:{spell:'E Arcane Shift; Q poke',window:'His E is a major mobility cooldown. Force it defensively before committing a second engage tool.',failure:'Do not waste hard CC into a safe Arcane Shift or eat repeated uncontested Q through an empty wave.',wave:'Use minions to block Q when possible; crash deliberately rather than allowing him free poke at an immobile target.'},
+ Kaisa:{spell:'isolated Q; W skillshot; E reposition; R Killer Instinct',window:'Avoid isolating yourself for Q in an uneven 2v2. Her R needs plasma to access many targets, so track allied CC application.',failure:'Do not spend every peel spell before she can follow a plasma mark with R.',wave:'Hold minions between you and W when safe; contest pushes with your support in range.'},
+ Lucian:{spell:'E Relentless Pursuit; passive double shot; R Culling',window:'Respect empowered double-shot trades after each spell. Punish a spent E only when support CC is accounted for.',failure:'Do not overextend into short-range burst at level two.',wave:'If you cannot match his early push, preserve HP for the bounce instead of taking an uneven wave fight.'},
+ Xayah:{spell:'E Bladecaller feather root; R Featherstorm',window:'Track feather lines before dashing across them. After E and R are unavailable, she has fewer self-peel options.',failure:'Do not align behind three or more feathers when engaging.',wave:'Avoid fighting in corridors covered by her feathers; pull her away from pre-set lines.'},
+ Vayne:{spell:'E Condemn; Q Tumble; R stealth interactions',window:'Avoid fighting close to walls where Condemn can stun. Look for pressure after E is spent and help break her line of sight.',failure:'Do not assume frontline HP alone defeats repeated Silver Bolts procs.',wave:'Force wave decisions when she has limited early clear, but ward before turning a push into a dive.'},
+ Samira:{spell:'W Blade Whirl; E dash; R Inferno Trigger',window:'Do not spend high-value projectiles into her W. Control the first dash and deny the ability chain needed to unlock R.',failure:'Spacing and layered CC matter more than standing inside her ultimate to race damage.',wave:'Respect support engage when she can follow quickly; control the wave close to safety if all-in threat is high.'},
+ Varus:{spell:'Q Piercing Arrow; E slow/grievous wounds; R Chain of Corruption',window:'Sidestep charged Q and avoid grouping for R spreads. Punish him when his CC is down and his flash is unavailable.',failure:'Do not walk into a choke where his R can chain through the team.',wave:'Trade around his early range and push; use minion spacing to reduce shared poke.'},
+ MissFortune:{spell:'Q Double Up ricochet; E Make It Rain; R Bullet Time',window:'Do not stand behind a low-health minion that enables Q bounce. Interrupt or flank a committed R channel when safe.',failure:'Clumping in a narrow cone enables devastating R follow-up.',wave:'Vary your position relative to last-hit minions; prepare for her lane shove before dragon setup.'},
+ Nautilus:{spell:'Q Dredge Line; passive root; R Depth Charge',window:'Use minion cover against Q and punish a missed hook only with ally wave advantage. R can set up guaranteed follow-up even from range.',failure:'Do not stand exposed with no flash while his carry can follow a hook.',wave:'Respect brush control and levels two/three all-in reach.'},
+ Thresh:{spell:'Q Death Sentence; E Flay; W Dark Passage',window:'After Q misses, his main catch threat decreases, though Flay can still stop dashes. Watch lantern saves before counting a kill.',failure:'Do not dash predictably into Flay or face-check hook angles without minion cover.',wave:'Minion cover and brush control matter; watch lantern-enabled jungle paths.'},
+ Blitzcrank:{spell:'Q Rocket Grab; E Power Fist',window:'Track Q cooldown and position behind minions; punish a missed hook without wandering into an uneven fight.',failure:'A successful pull can erase a favorable lane, especially when your carry is isolated.',wave:'Build a wave to block hooks, and ward around fog-of-war grab angles.'},
+ Leona:{spell:'E Zenith Blade; Q stun; R Solar Flare',window:'Her engage requires a close follow-up; bait E away from your carry and punish if her lane partner cannot join.',failure:'Do not burn your disengage on a trivial poke spell when her full lock-down is ready.',wave:'Level two all-in and brush control can decide the lane; watch her position separately from the ADC.'},
+ Rakan:{spell:'W Grand Entrance; E Battle Dance; R The Quickness',window:'Track W and R separately. When W is committed and his escape path is cut, he can be punished before a full reset.',failure:'Do not group to allow a multi-target R/W engage from fog.',wave:'Ward flank routes before objectives and avoid late following into his fog.'},
+ Lulu:{spell:'W polymorph; E shield; R Wild Growth',window:'Threaten a trade after polymorph is spent; anticipate Wild Growth before calculating lethal on a carry.',failure:'Do not dive a protected hypercarry when both polymorph and ultimate are available.',wave:'Push when you can do so safely, but avoid letting her carry free-farm while you repeatedly fail all-ins.'},
+ Nami:{spell:'Q Aqua Prison; W bounce; E buffs; R Tidal Wave',window:'Dodge bubble and punish an overextended W trade. Her ultimate can stop a grouped engage or help chain allied CC.',failure:'Do not overstack for her Q/R in a cramped lane.',wave:'Position to deny favorable W bounces; coordinate wave push rather than fighting on every minion.'},
+ Milio:{spell:'Q knockback; W healing zone; E shields; R cleansing',window:'Bait the knockback before diving and consider that his R can cleanse many crowd-control effects on nearby allies.',failure:'Do not rely on one predictable stun as the sole kill condition if his R is available.',wave:'Force health and wave decisions while respecting his ally’s extended attack range.'},
+ Janna:{spell:'Q tornado; W slow; R displacement/heal',window:'Identify her tornado route before dashing; her R can reset an otherwise winning engage.',failure:'Do not force an obvious straight-line dive when defensive knockback is available.',wave:'Vision and wave timing help prevent her free roams after disengaging bot.'},
+ Soraka:{spell:'E Equinox silence/root; W healing; R global heal',window:'Avoid starting channel or dash combos inside E. Prioritize safe, coordinated pressure instead of chasing through her sustained heals.',failure:'Do not assume a carry is dead until Soraka R and available healing are accounted for.',wave:'Pressure her positioning through brush and wave pressure without sacrificing your own health.'},
+ Pyke:{spell:'Q Bone Skewer; E Phantom Undertow; R Death From Below',window:'Punish missed hook or E if he has no safe route back. Keep an eye on low-health allies when his execute is available.',failure:'Do not chase through fog into his stun path.',wave:'Ward roam entrances and keep track of his movement when he leaves the lane.'},
+ Rell:{spell:'W Ferromancy engage; R Magnet Storm',window:'After she commits a mounted/dismounted engage without follow-up she can be exposed; maintain spacing for her R pull.',failure:'Do not cluster with your carry where her W/R can catch both.',wave:'Respect brush starts and level-two all-in windows; do not fight in a huge enemy wave.'},
+ Brand:{spell:'Q stun (on ablaze target); W AoE; passive explosion',window:'Avoid bunching to limit passive spread and W hits. Punish when his Q or other essential setup spell is on cooldown.',failure:'An apparently low-health Brand can still deal teamfight damage after dying.',wave:'Do not stand on top of your ADC; lane pressure comes from spacing his AoE around the minion wave.'},
+ Zyra:{spell:'E Grasping Roots; plant zones; R Stranglethorns',window:'Track root and avoid fighting in her plant setup. Clear accessible plants when safe, but not at the cost of taking a full combo.',failure:'Do not cluster inside her R/plant zone for an easy engage.',wave:'Contest brush vision only when you can survive her root and plant damage.'},
+ LeeSin:{spell:'Q Sonic Wave / Resonating Strike; W Safeguard; R Dragon’s Rage',window:'Dodge first Q or break his follow-up angle; anticipate ward-hop and flash-kick repositioning after level six.',failure:'Do not chase into a kicked-back target or fight him early without nearby lane priority.',wave:'Track early path reveals and protect lanes susceptible to early ganks.'},
+ Vi:{spell:'Q Vault Breaker; R Cease and Desist',window:'Side-step charged Q and protect priority carry positioning against point-and-click R lockdown.',failure:'Do not force isolated fights against her when allied laners cannot rotate.',wave:'Vision on jungle entrance paths reduces her Q-flank surprise; keep wave position in mind.'},
+ Viego:{spell:'Passive Sovereign’s Domination resets; W stun; R Heartbreaker',window:'Deny the first takedown and punish W/R commitments when his team cannot follow.',failure:'One low-health teammate can enable a cascade of possessions; do not feed the first reset.',wave:'When his jungle location is unknown, avoid low-health skirmishes and defend camp entrances together.'},
+ Nocturne:{spell:'R Paranoia; E fear tether; W spell shield',window:'Track his R reach and avoid isolated low-health lane states. Pop his W with lower-value abilities before using decisive CC.',failure:'Do not rely on a single spell that he can block, or separate from teammates before objectives.',wave:'Play near safe vision and cover before midgame sidelane assignments.'},
+ Graves:{spell:'E Quickdraw armor stacks; W Smoke Screen; R burst',window:'Avoid standing in Smoke Screen as he dashes around you; respect close-range attacks and accumulated E stacks.',failure:'Do not treat him as a fragile ranged carry in early jungle skirmishes.',wave:'Check lane priority before entering his jungle and deny angles for close-range pellet damage.'},
+ Kindred:{spell:'Marked camps/champions; Q mobility; R Lamb’s Respite',window:'Track marks and jump angles. Her R changes execute math—do not spend your only burst during its protection.',failure:'Do not tunnel on a marked camp without priority or vision.',wave:'Coordinate coverage of contested marks rather than blindly following into enemy jungle.'},
+ XinZhao:{spell:'E dash; Q third-hit knockup; R Crescent Guard',window:'Respect short-range early duels and do not waste distant projectile burst into his R exclusion zone.',failure:'Do not fight through his sustained Q knock-up while outnumbered.',wave:'Track his first three camps and nearby lane priority before contesting river.'},
+ Sejuani:{spell:'Q Arctic Assault; E Permafrost stun; R Glacial Prison',window:'Respect melee ally stacks for E and R engage from fog. Punish after the primary hard engage is spent.',failure:'Do not group in a narrow jungle entrance without an answer to R.',wave:'Watch lane CC synergy before committing to an invade.'},
+ Amumu:{spell:'Q Bandage Toss; R Curse of the Sad Mummy',window:'Use minion/terrain cover where possible and spread out against his R.',failure:'Do not group five champions within his ultimate range in dragon pit.',wave:'Avoid losing early river control to a low-information Bandage Toss gank.'}
+
+};
+const CHAMPION_EXECUTION={
+ Darius:{entry:'Try to take outer-Q heals after a slow or pull; only chase when Ghost and the remaining lane length favor you.',punish:'After their mobility or disengage is spent, maintain contact long enough to build Hemorrhage stacks; cut the trade if you cannot.',avoid:'Do not start with E if their key mobility is still available and the wave exposes you to a gank.'},
+ Irelia:{entry:'Set up low-HP minions for Q resets, stack passive and use E stun to create a realistic entry.',punish:'Punish a spent control spell with Q resets while keeping a minion escape route.',avoid:'Do not Q straight through active anti-dash zones or enter without passive stacks.'},
+ Malphite:{entry:'Poke only if the health gained is worth the mana and retaliation; into melee AD, short armor-backed trades can be better.',punish:'After their dash or defensive spell is down, take a favorable trade; post-six coordinate R with ally follow-up.',avoid:'Do not R into a wall of peel just because you can hit one tank.'},
+ Olaf:{entry:'Land Q where you can retrieve the axe, then choose a chase only if the opposing escape spell is down.',punish:'If opponents commit CC after your R, keep pressure with axes; kite when you cannot maintain contact.',avoid:'Do not commit a low-health all-in assuming your sustain will overcome burst instantly.'},
+ Rumble:{entry:'Use Q cone and E harpoon to space the melee threat while managing Danger Zone heat deliberately.',punish:'Overheat for empowered autos only if you can finish the exchange or have a safe exit.',avoid:'Do not lock yourself out of casting spells into an opponent who survives the overheat.'},
+ Akali:{entry:'Use passive ring spacing to weave Q and empowered autos; preserve W to stall their retaliation.',punish:'If they expend a point-and-click defensive tool, wait it out in shroud or disengage before returning with E/R.',avoid:'Do not use shroud just for a trivial hit when you will need it to survive the next all-in.'},
+ Fizz:{entry:'Punish after key control or mobility is spent; Q/W follow-up can threaten a kill without using E offensively.',punish:'If their ability to stop your approach is down, E can convert an all-in; otherwise keep E as your survival tool.',avoid:'Do not E onto the wave before verifying the enemy jungler and a safe exit.'},
+ Qiyana:{entry:'Use grass to reduce retaliation, ice for control and rock only when the target is low enough for meaningful execute damage.',punish:'Punish after enemy mobility is spent; terrain around river and objectives amplifies R value.',avoid:'Avoid opening with a committed E when their invulnerability or escape is still available.'},
+ Taliyah:{entry:'Use Q spacing and maintain E as a barrier against dashes; W requires setup rather than speculative use.',punish:'When enemy mobility is down, W into E can control the lane; shove only when you can survive a jungle visit.',avoid:'Do not chase melee assassins into their fog without E or a clear escape path.'},
+ Yasuo:{entry:'Proc passive shield opportunistically and create Q3 pressure with minions; use E to change angles, not simply to rush forward.',punish:'Wind Wall must be saved for relevant projectiles; punish missing enemy disengage with Q stacks and a planned exit.',avoid:'Do not R on the first knock-up when their counter-engage can kill you on landing.'},
+ LeeSin:{entry:'Land Q only when your follow-up is safe; W ward hops and ally dashes are critical exit tools.',punish:'When an opposing escape is down, coordinate Q2 or R repositioning with a teammate’s CC.',avoid:'Do not Q2 into multiple enemies without information or use your only escape to chase a low-value target.'},
+ Vi:{entry:'Charge Q from fog or behind ally CC when a gank target is committed to a wave.',punish:'After a target spends mobility, Q/R can force a numbers advantage if nearby allies can follow.',avoid:'Do not R into an enemy cluster when your team has no route to the locked target.'},
+ Viego:{entry:'Use W from cover and maintain health through clear so you can contest fights with priority.',punish:'Focus on securing the first takedown that enables a possession; time R after target defensive tools.',avoid:'Do not sprint past a vulnerable ally to chase a reset that leaves your team unsupported.'},
+ Nocturne:{entry:'Clear efficiently and evaluate lanes with reliable CC; your R threat grows at level six.',punish:'Protect W spell shield for the essential stun and maintain E fear contact without overextending.',avoid:'Do not R into an unwinnable numbers disadvantage simply because an enemy is low HP.'},
+ Lillia:{entry:'Maintain passive movement stacks around camps and skirmishes while avoiding point-blank CC.',punish:'Hit multiple champions with ability damage before a coordinated sleep, and keep distance while your team follows.',avoid:'Do not overcommit into burst before allies have controlled the approach route.'},
+ Jinx:{entry:'Switch Q gun range and splash based on wave position; use chompers to defend known entry paths.',punish:'After an enemy engage cooldown fails, use sustained autos and your passive reset to keep safe range.',avoid:'Do not chase a reset through unwarded territory or place chompers after the enemy has already reached you.'},
+ Kaisa:{entry:'Use support CC and isolated Q to create short favorable trades; track passive stacks before R.',punish:'Follow a plasma-marked target with R when you know the exit and ally damage, rather than blindly diving.',avoid:'Do not R into a group where your support cannot protect you.'},
+ Ezreal:{entry:'Land Q through manageable angles while preserving E for the genuine engage threat.',punish:'An enemy hook or dive cooldown creates room to step up and trade with Q/autos.',avoid:'Do not E forward into an unknown jungle threat or ignore autoattacks in close-range fights.'},
+ Caitlyn:{entry:'Use range and trap control to pressure last-hits while tracking enemy engage from brush.',punish:'A missed hook or gap-closer lets you push an auto-and-ability trade; position traps around constrained paths.',avoid:'Do not E into a worse side of the wave or tunnel on tower plates through a missing jungler.'},
+ Xayah:{entry:'Place feathers through farming and trades, then threaten E when opponents cross their lines.',punish:'With multiple feathers aligned, pull for a root after an enemy uses mobility.',avoid:'Do not spend R for marginal damage if it is your answer to the enemy’s primary dive.'},
+ Thresh:{entry:'Control brush and threaten Q while preserving E Flay to interrupt predictable dashes.',punish:'When hook lands, consider ally range and lantern value before taking Q2.',avoid:'Do not take a second Q into an unsupported 1v3 or expend lantern merely to poke.'},
+ Nautilus:{entry:'Position for hooks that your Bot can immediately follow; use passive root to layer CC.',punish:'Punish an opponent caught outside the minion line and track their cleanse or dash.',avoid:'Do not hook into multiple enemies when the carry is unable to follow.'},
+ Rakan:{entry:'Use W on a target without easy disengage, with E available to retreat to an ally.',punish:'Use R for a coordinated multi-target approach once enemy interrupt abilities are unavailable.',avoid:'Do not W into hard lockdown when your E escape has no ally target.'},
+ Lulu:{entry:'Protect ally trades with E and coordinate Whimsy between offense and polymorph defense.',punish:'When key engage tools have been spent, empower your carry to win the longer exchange.',avoid:'Do not polymorph a low-threat frontline while their assassin remains ready to dive.'},
+ Nami:{entry:'Use W bounces for efficient short trades and reserve Q for an opponent committed to a path.',punish:'Layer E and Q/R with your Bot’s accessible damage window.',avoid:'Do not throw speculative Q when the enemy can immediately engage after it misses.'}
+
+};
+// Hand-reviewed focused examples (dated community advice may change with patches).
+const EXPERT_PAIRINGS={
+ 'Taliyah:Fizz':{tag:'Recent matchup discussion',first:'Before level 3, use Q range to tax Fizz for CS without stepping into Q range. After level 3, value health and do not throw E onto the wave merely to shove.',window:'Fizz E is the main cooldown: save Taliyah E to deter his dash, and pressure after he uses E to clear or evade. Stand off the minion line so one E cannot damage both you and the wave.',wave:'Freeze near safety when threatened. If he roams, ping early and take a safe crash or opposite-map play rather than blind-following river.',sources:['taliyahFizz']},
+ 'Qiyana:Fizz':{tag:'Recent matchup discussion',first:'Respect Fizz Q approach range and avoid letting him trigger his entire damage pattern for free. Grass Q offers a way to shorten his retaliation window.',window:'Bait Fizz E before committing Qiyana E; use W to avoid his E landing when feasible. Punish the extended E cooldown with controlled short trades.',wave:'Preserve a minion to disengage to; both players can snowball rapidly after level six, so maintain vision and HP.',sources:['qiyanaFizz']},
+ 'Akali:Yasuo':{tag:'Recent matchup discussion',first:'Scout Yasuo level-one start. Do not contest his first extended trade into Q stacks and passive shield; stabilize until W shroud is available.',window:'Shroud can buy time against Yasuo commitment and Wind Wall; force his shield before committing burst. Preserve shroud as a real defensive resource.',wave:'Avoid fighting inside a huge minion wave that gives Yasuo repeated E dashes. After six, track shield and Wind Wall before all-in.',sources:['akaliYasuo']},
+ 'Fizz:Yasuo':{tag:'Contested player reports',first:'Yasuo shield and a large wave complicate Fizz Q trades; do not Q forward merely to pop shield if he can chase along minions.',window:'Consider a short trade when Yasuo lacks Q3 and dash access. Fizz E should preserve safety if Yasuo can extend the fight.',wave:'Reduce the size of the wave before extended trades; do not assume a small early kill lead guarantees the later sidelane.',sources:['yasuoFizz','fizz']},
+ 'Yasuo:Fizz':{tag:'Contested player reports',first:'Yasuo wants short trades around shield and Q stacks; Fizz can reverse a long trade with E invulnerability and level-six burst.',window:'Try to force Fizz E without spending your entire combo, and preserve Wind Wall timing for the relevant projectile.',wave:'Do not dash across the entire wave once Fizz has level-six kill pressure and jungle cover.',sources:['yasuoFizz']},
+ 'Irelia:Darius':{tag:'Mechanics-based synthesis',first:'Build passive stacks without granting Darius five bleed stacks. Avoid his outer Q by moving inside the blade or leaving the radius entirely.',window:'A missed pull creates a punish window, but Ghost and a long lane can still turn the fight. Fight near Q-reset minions and prepare an exit.',wave:'Prefer a controlled wave near your side to reduce run-down distance; do not trade in an empty lane.',sources:['irelia','darius']},
+ 'Darius:Irelia':{tag:'Mechanics-based synthesis',first:'Count Irelia passive stacks and the low-HP minions behind you. Do not expend pull until you understand her Q reset route.',window:'After Irelia misses E or uses Q without a reset, threaten outer Q and a prolonged trade when enemy jungle is accounted for.',wave:'Manage your own low-HP minions so she cannot repeatedly reposition while you try to stack passive.',sources:['darius','irelia']},
+ 'Malphite:Irelia':{tag:'Mechanics-based synthesis',first:'Avoid extended auto exchanges when Irelia has passive stacks and minion resets. Malphite armor and E attack-speed slow favor short defensive trades.',window:'When her E stun misses or she has no safe Q reset, take a limited trade; preserve R for a genuinely high-value engage.',wave:'Do not allow a stacked wave to give Irelia free Q chains.',sources:['malphite','irelia']},
+ 'Olaf:Malphite':{tag:'Community-informed strategic synthesis',first:'Repeated axe pressure and true-damage E can challenge armor stacking, but do not take free Q poke while collecting axes.',window:'Your ultimate can protect you from lockdown during the committed chase; use it when a real kill or objective angle is available.',wave:'Control the distance between the two towers for a chase, and keep track of opposing jungle entry.',sources:['olaf']},
+ 'Rumble:Darius':{tag:'Community-informed strategic synthesis',first:'Space beyond Darius E and use Q/E for damage while retreating, not by standing inside his passive-stacking range.',window:'Once Darius pull is down, you may be able to push heat and punish at range; do not overheat into his extended all-in.',wave:'Hold a manageable wave near safety; a long lane can let Ghost negate your spacing.',sources:['rumble','darius']}
+};
+function evaluateResearch(me,foe,enemy,allies){
+ const a=champKey(me),b=foe?champKey(foe):'';
+ if(!b)return `<div class="research-pane"><h3>Champion-specific matchup lab <span class="matchup-badge">Blind pick</span></h3><p class="research-sub">Enter the opposing ${ROLE_NAMES[lane]} champion to see ability-level counterplay and timing windows. General strategic advice remains below.</p></div>`;
+ const exact=EXPERT_PAIRINGS[a+':'+b],them=ENEMY_MECHANICS[b],ours=CHAMPION_EXECUTION[a];
+ const sourceKeys=[...(exact?.sources||[]),...(a==='Fizz'?['fizzChallenger']:[]),...(a==='Olaf'?['olaf']:[]),...(a==='Rumble'?['rumble']:[]),...(a==='Darius'?['darius']:[])];
+ const unique=[...new Set(sourceKeys)].filter(k=>RESEARCH_LINKS[k]).slice(0,4);
+ const one=exact?.first|| (them?`Your first priority is ${them.spell}. ${them.window}`:`No champion-specific verified script for ${nameFor(foe)}: identify their key crowd-control, mobility and defensive cooldowns before committing.`);
+ const second=exact?.window||(ours?`${ours.entry} ${them?.failure||ours.punish}`:'Trade only with a clear cooldown and minion advantage. Avoid promising an all-in based on archetype alone.');
+ const third=exact?.wave||them?.wave||'Build a safe first-three-wave plan, track jungle pathing, and crash before roaming. Do not trade away multiple waves for an uncertain roam.';
+ const fourth=ours?`${ours.punish} ${ours.avoid}`:'Hold your main defensive cooldown until the opponent actually commits; preserve an exit and a favorable wave.';
+ const certainty=exact?.tag||(them?'Mechanics-based synthesis':'General strategic framework');
+ const item=(heading,txt)=>`<div><b>${heading}</b><p>${esc(txt)}</p></div>`;
+ return `<div class="research-pane"><h3>Ability-level matchup lab <span class="matchup-badge">${esc(certainty)}</span></h3><div class="research-sub">${esc(nameFor(me))} versus ${esc(nameFor(foe))}. This is strategic guidance from champion mechanics and curated player discussions, not a guaranteed matchup outcome or a verified current-patch build. No proprietary guide text is reproduced.</div><div class="research-grid">${item('Level 1–3 / first contact',one)}${item('Key cooldown / punish window',second)}${item('Wave & jungle positioning',third)}${item('Execution / common mistake',fourth)}</div><div class="source-links">${unique.map((key,i)=>`<a href="${RESEARCH_LINKS[key]}" target="_blank" rel="noopener noreferrer">${key==='fizzChallenger'?'Challenger Fizz guide':key==='olaf'?'Olaf mains guide':key==='rumble'?'Rumble mains discussion':key==='darius'?'Darius mains discussion':key==='fizz'?'Fizz mains source':`Community source ${i+1}`} ↗</a>`).join('')||'<span class="research-sub">No direct expert-reviewed pairing source yet; mechanics-based advice only.</span>'}</div></div>`;
+}
+
+// Role-specific plans are mechanically derived and deliberately separated from
+// curated pairing research. They apply to any champion from the full roster.
+function roleStrategy(role,me,allies,enemy){
+ const name=nameFor(me),early=hasTrait(me,'early'),scale=hasTrait(me,'scale'),engage=hasTrait(me,'engage'),peel=hasTrait(me,'peel'),poke=hasTrait(me,'poke'),dive=hasTrait(me,'dive'),front=hasTrait(me,'frontline'),ranged=hasTrait(me,'ranged');
+ const jr=enemy.jungle?nameFor(enemy.jungle):'unknown enemy jungler';
+ const botEnemy=enemy.bottom?nameFor(enemy.bottom):'unknown enemy Bot',supEnemy=enemy.support?nameFor(enemy.support):'unknown enemy Support';
+ const botAlly=allies.bottom?nameFor(allies.bottom):'unselected Bot partner',supAlly=allies.support?nameFor(allies.support):'unselected Support partner';
+ if(role==='jungle')return {
+  focus:early?'Proactive jungle tempo and early gank pressure':scale?'Farm-to-spike jungler with selective skirmishes':engage?'Gank and objective initiation jungler':'Adaptive farming, ganking and objective control',
+  trade:`Jungle mirror versus ${jr}: ${early?'Test contested river entrances only when your nearest lanes can move first.':'Do not force the first river duel without knowing level, health, smite and lane priority.'} ${dive?'Use accessible targets and exit routes for ganks; avoid forcing through enemy minion waves.':front?'Use crowd control to set up your laner rather than outdamaging an isolated opponent.':'Choose ganks where ally CC, wave location and target mobility make the play repeatable.'}`,
+  wave:`First clear: identify which lanes have push and whether ${jr} is likely to start toward them. Base your first route on camp efficiency, lane states and an informed contest; you cannot infer the enemy starting camp from the draft alone. Protect camp respawn tempo, and cross-map rather than blindly walking into a lost 2v2.`,
+  spike:`${early?'Look for an achievable first three-camp or full-clear gank/invade window when allies can move.':'Complete a safe efficient first clear and choose your first gank or reset based on actual wave states.'} Track your level-six and first-item breakpoints against the opposing jungle pick.`,
+  early:`Track the opposing jungle position through camps, reveals and lane arrivals. Contest early objectives only when your nearby laners have priority and you have health, smite and vision; otherwise trade for camps, a cross-map objective or a safe gank.`,
+  mid:`Balance respawning camps with proactive objective setup. Attack a side with ally priority, coordinate a numbers advantage, then secure vision and reset before dragon, Grubs, Herald or Baron. Avoid simultaneous low-information invades and objective commitments.`,
+  late:`Play around smite access and objective security; ${engage?'initiate when your team is positioned for follow-up':'reserve key spells for a reliable engage, peel or objective turn'} and do not trade your life immediately before Baron or Elder.`,
+  laneLabel:'Jungle matchup · clear / gank windows',laneTips:[`Enemy jungle: ${jr}. Track first reveal and subsequent camp sequencing; draft alone cannot confirm their route.`,early?'Press tempo when your laners have priority, not automatically on spawn.':'If lanes lack priority, preserve farm and countergank windows rather than force invades.']
+ };
+ if(role==='bottom')return {
+  focus:scale?'Scaling marksman / carry: protect gold and continuous damage uptime':early?'Lane-pressure carry: convert favorable 2v2 trades':'Bot carry: farm consistency, controlled 2v2 and objective DPS',
+  trade:`Bot 2v2: ${botEnemy} + ${supEnemy}, paired with ${supAlly}. ${ranged?'Space at the edge of your attack range, track the opposing Support engage/poke cooldown, and trade when their Bot walks up to last-hit.':'Account for your shorter range; avoid a forced all-in without partner setup.'} ${allies.support&&hasTrait(allies.support,'engage')?'Follow up when your support engages only if the wave and enemy defensive spells allow it.':allies.support&&hasTrait(allies.support,'peel')?'Use your support’s protection to maintain damage uptime, not to commit blindly.':'Adapt your trade pattern to the support matchup once your ally is entered.'}`,
+  wave:`Coordinate pushes, freezes and recalls with ${supAlly}. Deny the enemy’s first level-two all-in by matching the early push when safe, or give space and collect the bounced wave. Never take a trade through a large hostile minion wave; use a crash to reset or gain dragon rotation tempo.`,
+  spike:`Track your lane’s level-two, level-three and level-six 2v2 breakpoints. ${scale?'A clean farm lead and item completion can outperform low-confidence early dives.':'Trade or all-in on your realistic item and cooldown spike, with both enemy Bot and Support accounted for.'}`,
+  early:`Dragon priority comes from your paired wave state and jungle information. Crash as a duo, reset together where possible, and maintain vision of river and tri-brush before extended pushes. Avoid entering river when the enemy support can leave lane first.`,
+  mid:`Catch safe mid waves after outer towers fall; do not split alone with no vision when assassins or flankers are missing. Rotate with your support and frontline to objectives while preserving farm tempo and summoner spells.`,
+  late:`Your first job is sustained damage while alive. ${dive?'Treat any offensive dash as a commitment—confirm defensive coverage.':'Attack the closest safe high-priority target rather than overstepping for a carry.'} Track dive cooldowns, protect flash, and coordinate peel and frontline spacing.`,
+  laneLabel:'Bot duo matchup · 2v2 / wave',laneTips:[`Opposing lane: ${botEnemy} plus ${supEnemy}.`,`Ally Support: ${supAlly}. Plan wave timing and all-ins as a duo.`]
+ };
+ if(role==='support')return {
+  focus:engage?'Engage / pick support: lane windows and vision control':peel?'Defensive support: protect carries and neutralize dives':poke?'Poke / pressure support: lane HP advantage and setup':'Flexible support: vision, lane trading, roaming and protection',
+  trade:`Lane partner: ${botAlly}, opposing duo: ${botEnemy} + ${supEnemy}. ${engage?'Look for a committed opening after the enemy escape or peel spell is used; your Bot must be in range to follow.':peel?'Save your main defensive cooldown for the opponent’s genuine all-in and trade when it cannot be punished.':poke?'Use the brush and wave position to attack opponents at last-hit timings without sacrificing your carry’s safety.':'Coordinate short trades with your Bot and use positioning to deny their safest trade pattern.'}`,
+  wave:`Do not unintentionally break your Bot’s freeze. Help push when you have a planned crash, vision objective or reset; after a bounce, preserve your partner’s farming zone and ward against the enemy jungler. Contest brush control without handing over free HP.`,
+  spike:`${engage?'Level two and level six create initiation opportunities when your Bot can follow.':peel?'Your defensive ability timings matter more than raw damage; know when your peel unlocks an all-in denial.':'Trade around support item progression, level breakpoints and your key utility cooldown.'} Track the enemy support’s roam and ultimate timing.`,
+  early:`Roam on a valid bot crash or when your Bot can farm safely alone, not simply because mid looks gankable. Establish vision before dragon, escort jungle invades only with lane priority, and return before abandoning a large threatened wave.`,
+  mid:`Coordinate support/jungle vision lines in advance of objectives. ${engage?'Use fog to threaten picks with allies close enough to capitalize.':peel?'Stay near your principal carry when the enemy has strong dive tools.':'Help contest approach paths while keeping your backline accessible.'} Refresh wards on your way from base and deny deep vision safely.`,
+  late:`Your key resource is vision and ${engage?'engage threat':'defensive utility'}. Do not face-check alone even with wards. ${peel?'Preserve interrupt or shielding tools for the first enemy dive.':'Choose between initiating and peeling based on your carry’s safety and enemy flank access.'}`,
+  laneLabel:'Support duo matchup · vision / engage',laneTips:[`Opposing Bot: ${botEnemy}; opposing Support: ${supEnemy}.`,`Allied Bot: ${botAlly}. An unsupported roam can surrender lane control and a large wave.`]
+ };
+ return null;
+}
+function analyzeMatchup(){
+ const s=settings(),me=getAnalyzerPick();if(!me)return '<div class="empty">Add and enable a champion in your pool to build a game plan.</div>';
+ const myName=nameFor(me),signature=guideFor(me),enemy=s.enemies||{},allies=s.allies||{};
+ const laneEnemy=enemy[lane]||'',oppName=laneEnemy?nameFor(laneEnemy):'unknown direct opponent';
+ const partnerEnemy=PARTNER_ROLE[lane]?enemy[PARTNER_ROLE[lane]]||'':'';
+ const rolePlan=roleStrategy(lane,me,allies,enemy);
+ const matchupName=PARTNER_ROLE[lane]?[laneEnemy?nameFor(laneEnemy):'unknown '+ROLE_NAMES[lane],partnerEnemy?nameFor(partnerEnemy):'unknown '+ROLE_NAMES[PARTNER_ROLE[lane]]].join(' + '):oppName;
+ const ourIds=[me,...ROLES.filter(([r])=>r!==lane).map(([r])=>allies[r]).filter(Boolean)];
+ const theirIds=ROLES.map(([r])=>enemy[r]).filter(Boolean);
+ const oursFilled=ourIds.length,theirsFilled=theirIds.length;
+ const our={engage:teamTrait(ourIds,'engage'),frontline:teamTrait(ourIds,'frontline'),peel:teamTrait(ourIds,'peel'),ap:teamTrait(ourIds,'ap'),ad:teamTrait(ourIds,'ad'),poke:teamTrait(ourIds,'poke'),dive:teamTrait(ourIds,'dive'),split:teamTrait(ourIds,'split'),scale:teamTrait(ourIds,'scale'),early:teamTrait(ourIds,'early'),waveclear:teamTrait(ourIds,'waveclear')};
+ const foes={engage:teamTrait(theirIds,'engage'),frontline:teamTrait(theirIds,'frontline'),peel:teamTrait(theirIds,'peel'),ap:teamTrait(theirIds,'ap'),ad:teamTrait(theirIds,'ad'),poke:teamTrait(theirIds,'poke'),dive:teamTrait(theirIds,'dive'),split:teamTrait(theirIds,'split'),scale:teamTrait(theirIds,'scale'),early:teamTrait(theirIds,'early'),waveclear:teamTrait(theirIds,'waveclear')};
+ const d=data[lane],match=laneEnemy&&d?shrunk(d.matchups?.[me]?.[lane]?.[laneEnemy]):null;
+ const partnerMatch=partnerEnemy&&d?shrunk(d.matchups?.[me]?.[PARTNER_ROLE[lane]]?.[partnerEnemy]):null;
+ const notes=[];
+ if(match){notes.push(`Measured lane signal: <b class="${match.delta>=0?'positive':'negative'}">${fmt(match.delta)} Δ2</b> against ${esc(oppName)} (${nf(match.games)} ${esc(match.label)} games; sample-shrunk). This is not a probability of winning the lane or an instruction to force fights.`)}
+ else notes.push(`No sufficiently sampled direct opponent statistic is available${laneEnemy?' for '+esc(oppName):' because the opposing champion is unknown'}. The guide below uses general champion identities, not fabricated matchup percentages.`);
+ if(PARTNER_ROLE[lane])notes.push(partnerMatch?`Second bot-lane signal versus ${esc(nameFor(partnerEnemy))}: <b class="${partnerMatch.delta>=0?'positive':'negative'}">${fmt(partnerMatch.delta)} Δ2</b> (${nf(partnerMatch.games)} ${esc(partnerMatch.label)} games).`:'The other opposing bot-lane champion has no sufficiently sampled matchup signal.');
+ let laneTips=[];
+ if(!laneEnemy)laneTips.push(lane==='jungle'?'Jungle matchup unknown: avoid claiming a first-clear advantage without tracking starts and lane priority.':'Direct opponent unknown: keep a flexible first-three-wave plan; avoid forcing priority until you learn enemy jungle starts.');
+ else{
+  if(hasTrait(laneEnemy,'ranged')&&!hasTrait(me,'ranged'))laneTips.push(`Melee into ranged (${esc(oppName)}): prioritize health and XP over every last hit, use brush and safe wave bounces to reduce poke, and commit only after their spacing or key disengage tool is compromised.`);
+  if(!hasTrait(laneEnemy,'ranged')&&hasTrait(me,'ranged'))laneTips.push(`Ranged into melee (${esc(oppName)}): establish a minion advantage while avoiding the long lane after the wave crashes; punish CS attempts without walking into their all-in range.`);
+  if(hasTrait(laneEnemy,'early'))laneTips.push(`${esc(oppName)} has meaningful early pressure: check levels 1–3 before contesting the first shove or an extended trade.`);
+  if(hasTrait(laneEnemy,'scale'))laneTips.push(`${esc(oppName)} is often a scaling threat: convert safe wave priority into clean recalls, plates or river tempo instead of gambling on risky dives.`);
+  if(hasTrait(laneEnemy,'dive'))laneTips.push(`Against ${esc(oppName)}, hold a disengage or defensive answer for the first committed dash/entry; a spent mobility spell can create a punish window.`);
+  if(hasTrait(laneEnemy,'frontline'))laneTips.push(`Against durable ${esc(oppName)}, value repeated favorable trades and wave advantage over trying to burst through defenses in a single rotation.`);
+  if(!laneTips.length)laneTips.push(`Versus ${esc(oppName)}, compare actual cooldown and wave states before taking trades. Keep the lane near safety when opposing jungle information is absent.`);
+ }
+ const myClass=hasTrait(me,'dive')?'dive':hasTrait(me,'poke')?'poke':hasTrait(me,'frontline')?'frontline':hasTrait(me,'split')?'split':'balanced';
+ const defaultTrade={dive:'Trade after enemy crowd control is spent; conserve a mobility exit and avoid initiating through a large enemy minion wave.',poke:'Use range and wave control to chip the opponent before committing. Maintain spacing and protect your own escape routes.',frontline:'Keep health high, trade around defensive cooldowns, and avoid a long chase away from your minion wave.',split:'Seek repeatable wave-supported trades and maintain an escape route before extending your side lane.',balanced:'Trade around cooldown advantages and minion counts. A safe wave and recall are often more valuable than forcing a marginal all-in.'};
+ const defaultWave=hasTrait(me,'waveclear')?'Create a crash when your jungler can use river priority; if they are opposite side, avoid pushing without vision.':'Plan your first-three-wave direction around jungle starts and matchup safety. Crash for recalls or freezes; avoid overextending without information.';
+ const focus=rolePlan?.focus||signature?.identity||(hasTrait(me,'scale')?'Scaling carry':hasTrait(me,'split')?'Side-lane duelist':hasTrait(me,'frontline')?'Frontline facilitator':hasTrait(me,'dive')?'Skirmish and backline-access champion':'Flexible skirmisher');
+ const trade=rolePlan?.trade||signature?.trade||defaultTrade[myClass],wave=rolePlan?.wave||signature?.wave||defaultWave;
+ const spike=rolePlan?.spike||signature?.spike||(hasTrait(me,'scale')?'Preserve resources while collecting farm and experience; commit to contests when core-item and level power spikes align.':hasTrait(me,'early')?'Prioritize safe first-wave control, early skirmishes, and converting priority into river objectives.':'Play for efficient recalls, favorable cooldown windows, and coordinated jungle skirmishes.');
+ const mid=rolePlan?.mid||signature?.mid||(hasTrait(me,'split')?'Assign yourself a side wave, push past the river only with enemy locations known, then rotate on an objective timer.':hasTrait(me,'engage')?'Arrive with the team before objectives; use vision and fog to threaten a favorable initiation.':'Secure the side wave and rotate through controlled vision for objective fights.');
+ const late=rolePlan?.late||signature?.late||(hasTrait(me,'scale')?'Fight front-to-back with peel and spacing; preserve carry uptime over chasing kills.':hasTrait(me,'dive')?'Enter fights after dangerous peel and cooldowns are used. Choose a realistic carry target and an exit route.':hasTrait(me,'frontline')?'Identify whether your team needs you to initiate or counter-engage; avoid leaving your main damage threat undefended.':'Stay connected to the next objective and commit only when your team can follow up.');
+ const laneJ=enemy.jungle?nameFor(enemy.jungle):null;
+ const jungleWarning=laneJ?`${esc(laneJ)} is the opposing jungler. ${hasTrait(enemy.jungle,'dive')||hasTrait(enemy.jungle,'engage')?'Expect hard-commit gank windows; track gap closers and avoid extended lanes without vision.':hasTrait(enemy.jungle,'early')?'Protect early river entries and watch for early invades or ganks.':'Track their appearance before extending the wave or beginning a dive.'}`:'Enemy jungler unknown: place defensive vision before the first long-lane crash, and avoid assuming the opposite side is safe.';
+ const friendlyJ=lane==='jungle'?'You are the jungler: use your own first-clear, smite, gank routes and lane priority rather than assuming an ally is jungling.':allies.jungle?`${esc(nameFor(allies.jungle))} is your jungler. ${hasTrait(allies.jungle,'early')||hasTrait(allies.jungle,'engage')?'Build a wave that supports an early gank or river contest and communicate the crash.':'Coordinate objective and recall timers instead of demanding an unsupported gank.'}`:'Allied jungler unknown: prioritize a self-sufficient wave plan until the jungle matchup is entered.';
+ let winCons=[];
+ if(our.engage>=2)winCons.push('Layer your initiation rather than stacking every major crowd-control cooldown on the same target.');
+ if(our.scale>=2)winCons.push('Protect farming lanes and avoid unnecessary 50/50 early fights; a clean transition to item spikes can be your strongest path.');
+ if(our.split>=1)winCons.push('Use side-lane pressure to draw opponents before contesting objectives. Assign who catches the opposite wave; never give away a free 5v4.');
+ if(our.poke>=2)winCons.push('Set up vision and chip health before engaging. Do not start neutral objectives with all your poke champions trapped in melee range.');
+ if(our.dive>=2)winCons.push('Coordinate flank timing and target focus, especially when enemy defensive summoners or peel are down.');
+ if(!winCons.length)winCons.push('Play for controlled waves, vision first, and a favorable numbers advantage around the next objective.');
+ if(our.frontline===0&&oursFilled>=4)winCons.push('Limited obvious frontline: avoid straight 5v5 front-to-back starts unless you can catch a priority target first.');
+ if(our.ap===0&&oursFilled>=4)winCons.push('Your shown team is heavily physical-damage oriented; consider enemy armor stacking when choosing targets and itemization.');
+ if(our.ad===0&&oursFilled>=4)winCons.push('Your shown team is heavily magic-damage oriented; consider opposing magic resistance when choosing fights.');
+ let opponentChecks=[];
+ if(foes.engage>=2)opponentChecks.push('Enemy layered engage: avoid grouping in narrow spaces without vision; reserve defensive spells for their first hard commit.');
+ if(foes.poke>=2)opponentChecks.push('Enemy poke: arrive early to set up flanks and avoid losing health before a dragon or Baron contest.');
+ if(foes.dive>=2)opponentChecks.push('Enemy dive: designate a peel response for your primary damage carry; anticipate multiple angles rather than one frontline entry.');
+ if(foes.scale>=2)opponentChecks.push('Enemy scaling: translate your safe early advantages into waves, vision and objectives, without overforcing unwinnable dives.');
+ if(foes.split>=2)opponentChecks.push('Enemy sidelane pressure: set a side-wave assignment before grouping, and do not make blind 5-person rotations.');
+ if(!opponentChecks.length)opponentChecks.push('Enemy composition remains incomplete or mixed. Track key initiation, burst and escape cooldowns as more opponents are revealed.');
+ const otherEnemy=ROLES.filter(([r])=>r!==lane).map(([r,n])=>enemy[r]?{role:n,...enemyConcern(r,enemy[r])}:null).filter(Boolean);
+ const teamAllies=ROLES.filter(([r])=>r!==lane).map(([r,n])=>allies[r]?{role:n,id:allies[r]}:null).filter(Boolean);
+ const evidence=`<div class="analyzer-evidence"><b>Evidence and uncertainty</b><div class="help">${notes.join(' ')} ${oursFilled}/5 allied champions and ${theirsFilled}/5 enemy champions known. Draft identities are heuristic, not live win rates. Advice assumes standard Summoner’s Rift roles, and does not know runes, builds, summoner spells, player skill, side selection, jungle pathing, or game state.</div></div>`;
+ const bullets=arr=>`<ul>${arr.map(x=>`<li>${x}</li>`).join('')}</ul>`;
+ const section=(n,title,body)=>`<section class="analyzer-phase"><div class="analyzer-phase-head"><span class="analyzer-step">${n}</span><h3>${title}</h3></div>${body}</section>`;
+ const firstPhase=lane==='jungle'?'Jungle plan · first clear / ganks':lane==='bottom'?'Bot lane · 2v2 / waves':lane==='support'?'Support lane · 2v2 / vision':'Lane plan · levels 1–6';
+ const research=PARTNER_ROLE[lane]?[evaluateResearch(me,laneEnemy,enemy,allies),evaluateResearch(me,partnerEnemy,enemy,allies)].join('') : evaluateResearch(me,laneEnemy,enemy,allies);
+ const early=section('01',firstPhase,`<h4>${lane==='jungle'?'Gank / duel conditions':lane==='support'?'Trading and engage decisions':'How to trade'}</h4><p>${esc(trade)}</p>${bullets((rolePlan?.laneTips||[]).concat(lane==='jungle'||PARTNER_ROLE[lane]?[]:laneTips))}<h4>${lane==='jungle'?'First route and lane priority':lane==='support'?'Wave partnership and vision':'Wave state and recall setup'}</h4><p>${esc(wave)}</p><h4>Jungle interaction</h4><p>${jungleWarning} ${friendlyJ}</p><h4>First power spike</h4><p>${esc(spike)}</p>`);
+ const preMid=section('02','Early game · first rotations and objectives',`<p>${esc(rolePlan?.early||'Decide whether your lane has actual priority before leaving: crash the wave, confirm the enemy cannot follow freely, and coordinate with the jungler. If you are losing lane, prefer a controlled catch and recovery to an unwarded roam.')}</p><p>${esc(hasTrait(me,'early')?'Your champion usually benefits from converting early pressure into river control and objectives rather than extending a lead without vision.':hasTrait(me,'scale')?'Your champion can often trade early pressure for reliable experience and gold; contest only when your arrival will not cost a decisive wave or camp reset.':'Protect your recall and rotation timing so you reach the next meaningful river fight without losing efficient farm.')}</p><p><b>Decision rule:</b> ${lane==='jungle'?'Contest when neighboring lanes can rotate; otherwise cross-map, reset or farm.':lane==='support'?'Roam when your Bot can farm safely and the route provides a real numbers or vision advantage.':lane==='bottom'?'Rotate only after your wave is handled and your duo can arrive safely.':'Roam when your wave is handled, the numbers are favorable, and the objective or kill is realistically available.'}</p>`);
+ const midS=section('03','Mid game · sides, skirmishes and map tempo',`<p>${esc(mid)}</p>${bullets(winCons)}<p><b>Objective checklist:</b> push the adjacent wave → buy and reset in time → establish vision or deny flank vision → identify the opposing engage and the target you can realistically reach → fight with your teammates.</p>`);
+ const lateS=section('04','Late game · teamfights and closing',`<p>${esc(late)}</p>${bullets(opponentChecks)}<p><b>Closing principle:</b> one late death can turn into Baron, Elder, or the game. Play around a clear wave assignment, teammates' positions, and key enemy cooldowns instead of chasing into fog.</p>${signature?.avoid?`<p><b>Critical mistake to avoid:</b> ${esc(signature.avoid)}</p>`:''}`);
+ const inspect=section('05','All ten players · draft interaction',`<div class="analyzer-dual"><div><h4>Your team</h4>${ROLES.map(([r,n])=>r===lane?`<div class="roster-line"><b>${n} · ${esc(myName)}</b><small>${esc(focus)}</small></div>`:allies[r]?`<div class="roster-line"><b>${n} · ${esc(nameFor(allies[r]))}</b><small>${esc(roleContext(r,allies[r]))}</small></div>`:`<div class="roster-line missing"><b>${n} · unknown</b><small>Enter this teammate above for more precise coordination.</small></div>`).join('')}</div><div><h4>Enemy team</h4>${ROLES.map(([r,n])=>enemy[r]?(()=>{let v=enemyConcern(r,enemy[r]);return `<div class="roster-line"><b>${n} · ${esc(v.name)}</b><small>${esc(v.type)} — ${esc(v.response)}</small></div>`})():`<div class="roster-line missing"><b>${n} · unknown</b><small>No opponent-specific assumption made.</small></div>`).join('')}</div></div>`);
+ const tags=[our.engage?'Engage tools':'',our.peel?'Peel available':'',our.scale?'Scaling threat':'',our.split?'Side pressure':'',foes.dive?'Enemy dive':'',foes.poke?'Enemy poke':''].filter(Boolean).map(t=>`<span class="analyzer-tag">${esc(t)}</span>`).join('');
+ return `<div class="analyzer-summary"><div class="analyzer-summary-top">${portrait(myName,'analyzer-icon')}<div><div class="sub">${esc(ROLE_NAMES[lane].toUpperCase())} MATCHUP PLAYBOOK</div><h3>${esc(myName)} <span class="analyzer-vs">vs ${esc(matchupName)}</span></h3><p>${esc(focus)}</p></div></div><div class="analyzer-tags">${tags||'<span class="analyzer-tag">Partial draft</span>'}</div></div>${evidence}${research}${early}${preMid}${midS}${lateS}${inspect}`;
+}
+function renderAnalyzer(){const root=$('analyzerOutput');if(root)root.innerHTML=analyzeMatchup()}
+function copyAnalyzer(){const node=$('analyzerOutput');if(!node)return;const clone=node.cloneNode(true);clone.querySelectorAll('.guide-section-hidden').forEach(x=>x.classList.remove('guide-section-hidden'));clone.style.cssText='position:fixed;left:-99999px;top:0;width:800px;pointer-events:none';document.body.appendChild(clone);const plain=clone.innerText;clone.remove(); if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(plain).then(()=>{$('analyzerCopy').textContent='Copied ✓';setTimeout(()=>$('analyzerCopy').textContent='Copy guide',1400)}).catch(()=>fallbackCopy(plain))}else fallbackCopy(plain)}
+function fallbackCopy(t){const el=document.createElement('textarea');el.value=t;document.body.appendChild(el);el.select();try{document.execCommand('copy');$('analyzerCopy').textContent='Copied ✓'}catch{}el.remove();setTimeout(()=>$('analyzerCopy').textContent='Copy guide',1400)}
+$('analyzerCopy').addEventListener('click',copyAnalyzer);
+const _oldRenderControls=renderControls;
+renderControls=function(){
+ _oldRenderControls();renderAnalyzerControls();setupCombos();renderAnalyzer();
+};
+const _oldRenderResults=renderResults;
+renderResults=function(){_oldRenderResults();renderAnalyzer()};
+// Re-render once after all HTML elements are initialized.
+renderControls();renderAnalyzer();
+
+
+/* V12 compact navigation: preserve existing data, renderers and selectors. */
+(function(){
+  const right = document.querySelector('main .layout > section');
+  const aside = document.querySelector('main .layout > aside');
+  if(!right || !aside) return;
+  aside.classList.add('compact-side');
+  const panels = [...right.children].filter(el => el.classList.contains('panel'));
+  const specs = [
+    ['picks','Recommendations','Pick rankings'],
+    ['guide','Matchup guide','Lane & game plan'],
+    ['coverage','Pool coverage','Matchup weaknesses'],
+    ['method','Method','Data & model']
+  ];
+  const nav = document.createElement('nav');
+  nav.className='workspace-tabs';nav.setAttribute('aria-label','Rift Draft sections');
+  const panes = new Map();const tabs = new Map();
+  specs.forEach(([id,label,desc],i)=>{
+    const b=document.createElement('button');b.type='button';b.className='workspace-tab';b.textContent=label;b.title=desc;b.setAttribute('aria-controls','workspace-'+id);b.setAttribute('aria-selected','false');b.setAttribute('role','tab');nav.appendChild(b);tabs.set(id,b);
+    const p=document.createElement('div');p.className='workspace-pane';p.id='workspace-'+id;p.hidden=true;panes.set(id,p);right.appendChild(p);
+    b.addEventListener('click',()=>setView(id));
+  });
+  const first = right.firstElementChild;right.insertBefore(nav,first);
+  panels.forEach((p,i)=>panes.get(specs[Math.min(i,3)][0]).appendChild(p));
+  function setView(id){
+    panes.forEach((p,k)=>p.hidden=k!==id);
+    tabs.forEach((b,k)=>b.setAttribute('aria-selected',String(k===id)));
+    try{sessionStorage.setItem('rift.v12.workspace',id)}catch{}
+  }
+  const initial=(()=>{try{return sessionStorage.getItem('rift.v12.workspace')}catch{return null}})();
+  setView(panes.has(initial)?initial:'picks');
+  // Pool and model settings remain fully available but do not consume viewport height.
+  const sidePanels=[...aside.children].filter(el=>el.classList.contains('panel'));
+  [1,2].forEach(i=>{
+    const panel=sidePanels[i];if(!panel)return;
+    const h=panel.querySelector('h2');if(!h)return;
+    const title=h.textContent;
+    const content=document.createElement('div');content.className='collapse-content';
+    const rest=[...panel.children].filter(x=>x!==h);rest.forEach(x=>content.appendChild(x));
+    const btn=document.createElement('button');btn.className='collapse-toggle';btn.type='button';
+    btn.setAttribute('aria-expanded','false');btn.textContent=title+'  ＋';
+    h.remove();panel.appendChild(btn);panel.appendChild(content);
+    function toggle(expanded){content.hidden=!expanded;btn.setAttribute('aria-expanded',String(expanded));btn.textContent=title+(expanded?'  −':'  ＋');panel.classList.toggle('side-collapsed',!expanded)}
+    btn.addEventListener('click',()=>toggle(btn.getAttribute('aria-expanded')!=='true'));
+    toggle(false);
+  });
+  const analyzer=$('analyzerPanel');
+  const output=$('analyzerOutput');
+  if(!analyzer||!output)return;
+  const guideNav=document.createElement('nav');guideNav.className='guide-tabs';guideNav.setAttribute('aria-label','Matchup guide phases');
+  const hint=document.createElement('div');hint.className='guide-hint';hint.textContent='Choose a phase to focus the guide. All sections remain available through these tabs.';
+  output.parentElement.insertBefore(guideNav,output);
+  output.parentElement.insertBefore(hint,output);
+  const phases=[['overview','Overview'],['matchup','Matchup'],['lane','Lane 1–6'],['early','Early'],['mid','Mid'],['late','Late'],['roster','All 10']];
+  let selected='lane';
+  function showGuide(which){
+    selected=which;
+    for(const b of guideNav.querySelectorAll('button'))b.setAttribute('aria-selected',String(b.dataset.phase===which));
+    for(const el of output.children){
+      const k=el.dataset.guideSection||'other';
+      el.classList.toggle('guide-section-hidden',!(k==='summary'||k===which||(which==='overview'&&k==='evidence')));
+    }
+  }
+  phases.forEach(([id,label])=>{
+    const b=document.createElement('button');b.className='guide-tab';b.type='button';b.dataset.phase=id;b.textContent=label;
+    b.setAttribute('aria-selected','false');
+    b.addEventListener('click',()=>showGuide(id));guideNav.appendChild(b);
+  });
+  function partitionGuide(){
+    const phaseNames=['lane','early','mid','late','roster'];let idx=0;
+    for(const el of output.children){
+      if(el.classList.contains('analyzer-summary'))el.dataset.guideSection='summary';
+      else if(el.classList.contains('analyzer-evidence'))el.dataset.guideSection='evidence';
+      else if(el.classList.contains('research-pane'))el.dataset.guideSection='matchup';
+      else if(el.classList.contains('analyzer-phase'))el.dataset.guideSection=phaseNames[idx++]||'roster';
+      else el.dataset.guideSection='overview';
+    }
+    showGuide(selected);
+  }
+  const oldRenderAnalyzer=renderAnalyzer;
+  renderAnalyzer=function(){oldRenderAnalyzer();partitionGuide()};
+  partitionGuide();
+  // Users can go from ranked picks directly to the focused guide.
+  const jump=document.createElement('button');jump.type='button';jump.className='smallbtn';jump.textContent='Open matchup guide →';
+  jump.style.margin='0 0 14px';
+  function analyzePick(id){
+    if(!id)return;
+    settings().analyzerPick=id;save();renderControls();renderResults();setView('guide');
+  }
+  const picksPanel=panes.get('picks');
+  picksPanel.addEventListener('click',e=>{const b=e.target.closest('[data-analyze]');if(b)analyzePick(b.dataset.analyze)});
+  jump.addEventListener('click',()=>{const first=picksPanel.querySelector('[data-analyze]');if(first)analyzePick(first.dataset.analyze);else setView('guide')});
+  const results=panes.get('picks').querySelector('#results');if(results)results.parentElement.insertBefore(jump,results);
+})();
+/* V14 Reliability Suite: source status, teammate-fit explanation, data backups and draft auditing. */
+const TEAM_FIT_DESCRIPTION='An optional, capped composition heuristic (never an observed win-rate or API prediction).';
+function teammateFit(championId){
+ const allies=Object.entries(settings().allies||{}).filter(([role,id])=>role!==lane&&id).map(([,id])=>id);
+ if(!allies.length)return 0;
+ const foes=Object.values(settings().enemies||{}).filter(Boolean);
+ const ct=tag=>teamTrait(allies,tag), ft=tag=>teamTrait(foes,tag);
+ let fit=0;
+ if(hasTrait(championId,'frontline')&&ct('frontline')===0&&(ct('scale')||ct('ad')||ct('ap')))fit+=0.35;
+ if(hasTrait(championId,'engage')&&ct('engage')===0&&(ct('scale')||ct('poke')||ct('ap')||ct('ad')))fit+=0.40;
+ if(hasTrait(championId,'peel')&&(ct('scale')>0||ft('dive')>0))fit+=0.4;
+ if(hasTrait(championId,'ap')&&ct('ad')>=2&&ct('ap')===0)fit+=0.45;
+ if(hasTrait(championId,'ad')&&ct('ap')>=2&&ct('ad')===0)fit+=0.45;
+ if(hasTrait(championId,'poke')&&ct('poke')>=1)fit+=0.15;
+ if(hasTrait(championId,'dive')&&ct('engage')>=1)fit+=0.20;
+ if(hasTrait(championId,'scale')&&ct('early')>=2)fit+=0.15;
+ if(hasTrait(championId,'peel')&&ft('dive')>=2)fit+=0.25;
+ return Math.min(1.5,Math.round(fit*100)/100);
+}
+const _rankChampNoTeamFit=rankChamp;
+rankChamp=function(...args){
+ const r=_rankChampNoTeamFit(...args);
+ if(r.score!=null){r.teamFit=teammateFit(r.id);if($('teamFitToggle').checked)r.score+=r.teamFit;}
+ return r;
+};
+// Local champion names remain authoritative; source metadata can never shrink the roster.
+function renderDataHealth(){
+ const root=$('dataHealth');if(!root)return;
+ let html='<div class="data-health"><div class="dh-head">Position</div><div class="dh-head">${prettyPatch()} snapshot</div><div class="dh-head">20-patch history</div>';
+ for(const [r,n] of ROLES){
+  const recent=currentData[r],history=historicalData[r];
+  const link=(type)=>`https://raw.githubusercontent.com/shizukaziye/lol-pool-coverage/main/data/${type==='recent'?'snapshots/'+REQUIRED_PATCH:'weighted'}/${r}.json`;
+  html+=`<div>${esc(n)}</div>`;
+  for(const [type,have] of [['recent',recent],['history',history]]){
+   const valid=have && (type==='recent'?validateLane:validateHistory)(have,r);
+   const stamp=type==='recent'?have?.scraped_at:have?.generated_at;
+   const displayStamp=stamp && Number.isFinite(new Date(stamp).getTime())?new Date(stamp).toLocaleDateString('en-US',{month:'short',day:'numeric'}):'';
+   html+=`<div><span class="${valid?'loaded':'missing'}">${valid?'✓ Loaded':'Not loaded'}</span> <a href="${link(type)}" target="_blank" rel="noopener" title="Open original JSON">JSON ↗</a>${valid&&displayStamp?`<div class="sub">${esc(displayStamp)}</div>`:''}</div>`;
+  }
+ }
+ root.innerHTML=html+'</div><p class="help">Use <b>Import JSON (backup)</b> above to load downloaded .json or .txt files. Current data and 20-patch files are saved in your browser. A backup preserves both the data and your custom pools.</p>';
+}
+function findDraftIssues(){
+ const s=settings(),picked=getAnalyzerPick();
+ const ids=[...ROLES.map(([r])=>r===lane?picked:s.allies?.[r]).filter(Boolean),...ROLES.map(([r])=>s.enemies?.[r]).filter(Boolean)];
+ const counts={};for(const id of ids)counts[id]=(counts[id]||0)+1;
+ return Object.keys(counts).filter(id=>counts[id]>1).map(nameFor);
+}
+function showDraftIssues(){
+ const root=$('draftIssues');if(!root)return;
+ const duplicated=findDraftIssues();
+ root.innerHTML=duplicated.length?`<div class="draft-warnings">⚠ Draft conflict: ${duplicated.map(esc).join(', ')} appears multiple times in the same match. Ranked analysis remains visible for experimentation, but the draft is not legal until duplicates are fixed.</div>`:'';
+}
+const _renderAnalyzerV14=renderAnalyzer;
+renderAnalyzer=function(){_renderAnalyzerV14();showDraftIssues()};
+const _renderResultsV14=renderResults;
+renderResults=function(){_renderResultsV14();showDraftIssues()};
+const _renderControlsV14=renderControls;
+renderControls=function(){_renderControlsV14();showDraftIssues()};
+// Change saved controls as the user changes them, without requiring a reload.
+$('teamFitToggle').checked=store.teamFitEnabled!==false;
+$('teamFitToggle').addEventListener('change',e=>{store.teamFitEnabled=e.target.checked;save();renderResults()});
+function downloadBackup(json,fileName){
+ const blob=new Blob([JSON.stringify(json)],{type:'application/json'});
+ const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=fileName;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);
+}
+$('exportBackup').onclick=()=>{
+ const snapshot={format:'rift-draft-backup',version:14,createdAt:new Date().toISOString(),settings:store,patch:REQUIRED_PATCH,recent:{...currentData},historical:{...historicalData}};
+ const stamp=new Date().toISOString().slice(0,10);
+ downloadBackup(snapshot,'rift-draft-backup-'+stamp+'.json');
+};
+$('importBackupBtn').onclick=()=>$('importBackupFile').click();
+$('importBackupFile').onchange=async e=>{
+ const file=e.target.files?.[0];e.target.value='';if(!file)return;
+ try{
+  const backup=JSON.parse(await file.text());
+  if(backup.format!=='rift-draft-backup'||!backup.settings||typeof backup.settings!=='object')throw Error('Not a Rift Draft backup');
+  if(backup.patch!==REQUIRED_PATCH){
+   if(!confirm('Backup is from patch '+prettyPatch(backup.patch||'unknown')+'; this site is using '+prettyPatch()+'. Restore champion pools/settings only? Old matchups will NOT be imported.'))return;
+   store=backup.settings;lane=LANE_KEYS.includes(store.activeLane)?store.activeLane:'top';save();initPools();renderControls();renderResults();alert('Champion pools and settings restored. Current matchup data preserved.');return;
+  }
+  const recent={},history={};
+  for(const role of LANE_KEYS){
+   if(backup.recent?.[role]){if(!validateLane(backup.recent[role],role))throw Error('Invalid '+prettyPatch()+' data for '+role);recent[role]=backup.recent[role]}
+   if(backup.historical?.[role]){if(!validateHistory(backup.historical[role],role))throw Error('Invalid historical data for '+role);history[role]=backup.historical[role]}
+  }
+  if(!confirm('Restore this Rift Draft backup? It will replace your saved pools and draft settings.'))return;
+  store=backup.settings;lane=LANE_KEYS.includes(store.activeLane)?store.activeLane:'top';
+  currentData={...recent};historicalData={...history};save();initPools();
+  for(const role of LANE_KEYS){
+   await dbPut(CACHE_PREFIX+role,recent[role]||null);await dbPut(HISTORY_PREFIX+role,history[role]||null);
+   rebuildLane(role);
+  }
+  const c=store.controls||{};
+  for(const key of ['laneWeight','comfortWeight','minGames'])if(c[key]!=null)$(key).value=c[key];
+  $('blindOnly').checked=!!c.blindOnly;
+  $('recencyWeight').value=store.recencyWeight??80;
+  $('recencyWeightLabel').textContent=$('recencyWeight').value+'% recent / '+(100-Number($('recencyWeight').value))+'% history';
+  $('laneWeightLabel').textContent=$('laneWeight').value+'%';$('comfortWeightLabel').textContent=$('comfortWeight').value;
+  $('teamFitToggle').checked=store.teamFitEnabled!==false;
+  statusFromData();renderControls();renderResults();
+  alert('Backup restored successfully.');
+ }catch(err){alert('Backup could not be restored: '+err.message)}
+};
+$('clearStatCache').onclick=async()=>{
+ if(!confirm('Clear all imported matchup statistics from this browser? Your champion pools and settings will be preserved.'))return;
+ currentData={};historicalData={};data={};
+ for(const role of LANE_KEYS){await dbPut(CACHE_PREFIX+role,null);await dbPut(HISTORY_PREFIX+role,null);}
+ statusFromData();renderControls();renderResults();
+};
+// Auto-update architecture: static files refreshed by the scheduled site build.
+// Local file:// mode retains manual-import functionality and never promises live downloads.
+function activeManifestFingerprint(m){
+ return JSON.stringify([m.source_patch,m.riot_patch,
+  ...LANE_KEYS.flatMap(r=>[m.recent?.[r]?.sha256||'',m.history?.[r]?.sha256||''])]);
+}
+function patchLabelsInStaticUI(){
+ const visible=prettyPatch();
+ const header=document.querySelector('header p');
+ if(header)header.textContent=`All five roles · Patch ${visible} · Auto-updating stats`;
+ const label=document.querySelector('label[for="recencyWeight"]');
+ if(label)label.textContent=`Patch ${visible} emphasis`;
+ const note=$('recencyWeight')?.closest('.field')?.querySelector('.help');
+ if(note)note.textContent=`Historical data already favors newer patches. Only ${visible} data available? It automatically uses 100% recent.`;
+ const source=$('sourceHelp');
+ if(source&&!liveManifest)source.textContent='Automatic data refresh requires the hosted website. Manual JSON imports remain available in this downloaded HTML file.';
+ if(typeof renderDataHealth==='function')renderDataHealth();
+}
+async function fetchManifest(){
+ if(location.protocol==='file:')throw Error('Standalone files cannot host an automatic data updater');
+ const res=await fetch('./data/manifest.json?t='+Date.now(),{cache:'no-store',signal:AbortSignal.timeout(15000)});
+ if(!res.ok)throw Error('Statistics manifest unavailable (HTTP '+res.status+')');
+ const m=await res.json();
+ if(m?.format!=='rift-draft-manifest'||m.schema_version!==1||!/^\d{2}\.\d{1,2}$/.test(m.source_patch)||!/^\d{2}\.\d{1,2}$/.test(m.riot_patch))throw Error('Unrecognized statistics manifest');
+ if(!m.recent||!m.history)throw Error('Incomplete statistics manifest');
+ return m;
+}
+async function checkForUpdates(force=false){
+ // Scheduled remote checks update without an open tab. This method learns of them.
+ const oldSignature=manifestFingerprint;
+ try{
+  const m=await fetchManifest();
+  const signature=activeManifestFingerprint(m);
+  const previous=localStorage.getItem('riftDraftDataFingerprint');
+  const changed=Boolean(previous&&previous!==signature);
+  const oldPatch=REQUIRED_PATCH;
+  liveManifest=m;manifestFingerprint=signature;manifestCheckedAt=Date.now();autoUpdateError='';
+  REQUIRED_PATCH=m.source_patch;
+  CACHE_PREFIX='patch-'+REQUIRED_PATCH+':';
+  HISTORY_PREFIX='history-20patch-'+REQUIRED_PATCH+':';
+  if(/^\d+\.\d+\.\d+$/.test(m.assets_version||''))ddVersion=m.assets_version;
+  patchLabelsInStaticUI();
+  if(changed||oldPatch!==REQUIRED_PATCH){
+   currentData={};historicalData={};data={};cachedBoot=false;
+   for(const r of LANE_KEYS){
+    await dbPut(CACHE_PREFIX+r,null);
+    await dbPut(HISTORY_PREFIX+r,null);
+   }
+  }
+  try{localStorage.setItem('riftDraftDataFingerprint',signature)}catch{}
+  // A new upstream deployment refreshes this role even when the patch number
+  // is unchanged, because its scraped observations may have been updated.
+  if(changed){for(const r of LANE_KEYS)delete fetchedRoleAt[r]}
+  await load(force||changed||oldPatch!==REQUIRED_PATCH);
+  if(!m.source_fresh){
+   const warning=`Riot: patch ${prettyPatch(m.riot_patch)}. Available statistics: ${prettyPatch(m.source_patch)}. The data source has not caught up; rankings are from the older patch.`;
+   const display=$('dataInfo');if(display)display.textContent=warning;
+   displaySource(`<span class="warn">${esc(warning)}</span> Current data will refresh automatically when published.`);
+  }else if(!Object.values(m.recent).every(v=>v?.available)){
+   displaySource(`Patch ${prettyPatch()} is available, but some role snapshots have not downloaded successfully. Check Data Health for per-role status.`);
+  }
+ }catch(err){
+  autoUpdateError=err.message;
+  if(location.protocol==='file:'){
+   status('Standalone mode · manual imports','partial');
+   patchLabelsInStaticUI();
+  }else{
+   status('Automatic sync unavailable','partial');
+   displaySource(`<span class="warn">Same-origin update service unavailable: ${esc(err.message)}</span> You can still use cached or manually imported data.`);
+  }
+  await load(force);
+ }
+}
+// Poll only the small manifest, not ten huge dataset files, while the tab remains open.
+// Fixed-frequency browser checks are best effort; GitHub Actions performs the real sync.
+setInterval(()=>{if(document.visibilityState!=='hidden')checkForUpdates(false)},30*60*1000);
+if(typeof document.addEventListener==='function')document.addEventListener('visibilitychange',()=>{
+ if(document.visibilityState==='visible'&&Date.now()-manifestCheckedAt>30*60*1000)checkForUpdates(false);
+});
+// Correctly show incoming imported data even after all feature extensions are installed.
+renderDataHealth();renderControls();renderResults();
+</script></body></html>
